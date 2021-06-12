@@ -1,0 +1,96 @@
+<div class="animated fadeIn table-container mat-elevation-z20">
+  <mat-card>
+    <mat-card-header>
+      <i class="material-icons">supervised_user_circle</i>
+      <mat-card-title>Epics</mat-card-title>
+      <mat-card-subtitle>Add, update or delete Epics</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Table loading spinner -->
+      <div class="table-loading-shade" *ngIf="isLoading">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+      </div>
+
+      <div class="table-header">
+        <!-- Table search input -->
+        <mat-form-field class="filter-field">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by epic_dept, epic_desc or epic_key"
+                 [(ngModel)]="search">
+          <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="search=''; applyFilter('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Add button -->
+        <button mat-raised-button (click)="save()" style="margin-bottom: 15px;margin-right: 30px" color="primary">
+          <mat-icon>add</mat-icon> Add Standard EPIC/User Story to BackLog
+        </button>
+
+        <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary">
+          <mat-icon>add</mat-icon> Add Custom EPIC/User Story to BackLog
+        </button>
+      </div>
+
+      <mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="id" matSortDisableClear
+                 matSortDirection="desc">
+        <!-- Table content -->
+
+
+        <ng-container matColumnDef="_dept_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Dept ID</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._dept_id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="_epic_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Epic ID</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._epic_id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="_epic_desc">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Epic Desc</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._epic_desc }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="_user_story_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>User story id</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._user_story_id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="_user_story_task">
+          <mat-header-cell *matHeaderCellDef>User Story Task</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._user_story_task }}</mat-cell>
+        </ng-container>
+
+        <!-- Table actions -->
+        <ng-container matColumnDef="seq_epic_id">
+          <mat-header-cell *matHeaderCellDef>
+            Actions
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row">
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Click to see more actions">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="edit(row)">
+                <mat-icon aria-label="Edit">create</mat-icon> Edit
+              </button>
+              <button mat-menu-item (click)="delete(row)">
+                <mat-icon aria-label="Delete">clear</mat-icon> Delete
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <!-- Table pagination -->
+      <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="totalItems" [pageSize]="pageSize"
+                     (page)="onPaginateChange($event)">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

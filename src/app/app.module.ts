@@ -26,12 +26,16 @@ import { SnackbarComponent } from '~components/snackbar/snackbar.component';
 import { AuthService } from '~services/auth.service';
 import { UserService } from '~services/user.service';
 import { ClientService } from '~app/services/client.service';
-
+import { EpicService } from '~app/services/epic.service';
 /*IMPORTACION DE LOS MODULES QUE A SU VEZ ELLOS IMPORTAN SUS PROPIOS COMPONENTES
 ASI SE EVITA SATURAR ESTE ARCHIVO DE IMPORTACIONES Y SE MODULARIZA EL PROYECTO.*/
 import { UserModule } from '~modules/user/user.module';
 import { AdminLayoutModule } from '~modules/admin-layout/admin-layout.module';
 import { LoginLayoutModule } from '~modules/login-layout/login-layout.module';
+import { EpicComponent } from '~modules/epic/epic.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+
+import { BacklogComponent } from './modules/backlog/backlog.component';
 
 @NgModule({
   declarations: [ /*DECLARACIÓN DE COMPONENTES*/
@@ -41,6 +45,10 @@ import { LoginLayoutModule } from '~modules/login-layout/login-layout.module';
     NotFoundComponent,
     ConfirmComponent,
     SnackbarComponent,
+    AutocompleteComponent,
+
+    BacklogComponent
+
   ],
   imports: [ /*DECLARACIÓN DE MODULOS*/
     SharedModule,
@@ -56,7 +64,8 @@ import { LoginLayoutModule } from '~modules/login-layout/login-layout.module';
     AuthGuard,
     AuthService,
     UserService,
-    ClientService
+    ClientService,
+    EpicService
   ],
   entryComponents: [ /*AQUI SE AGREGAN LOS MAT-CONFIRM Y LOS MAT-SNACKBAR DE ANGULAR MATERIAL*/
     ConfirmComponent,

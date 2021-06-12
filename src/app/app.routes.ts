@@ -30,6 +30,10 @@ const routes: Routes = [
         loadChildren: '~modules/client/client.module#ClientModule',
       },
       {
+        path: 'epics',
+        loadChildren: '~modules/epic/epic.module#EpicModule',
+      },
+      {
         path: 'users',
         loadChildren: '~modules/user/user.module#UserModule',
       },

@@ -13,6 +13,16 @@ export const CONSTANST = {
             save: HOST + '/api/client/save',
             get: HOST + '/api/client/:id'
         },
+
+      epic: {
+        list: HOST + '/api/epic/all',
+        delete: HOST + '/api/epic/delete/:id',
+        save: HOST + '/api/epic/save',
+        get: HOST + '/api/epic/find/:id',
+        dept: HOST + '/api/epic/dept/all',
+        epicDept: HOST + '/api/epic/dept/epic',
+        workorder: HOST + '/api/epic/workorder/all'
+      },
         user: {}
     },
     lang: {},

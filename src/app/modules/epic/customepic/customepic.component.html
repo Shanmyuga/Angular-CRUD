@@ -1,0 +1,51 @@
+<h1 mat-dialog-title> {{ data.title }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="frm">
+
+    <mat-form-field>
+      <textarea  matInput placeholder=" User story Description" formControlName="user_story_desc" class="person-input" ></textarea>
+      <mat-hint align="end">{{frm.controls.user_story_desc.value?.length || 0}}/10</mat-hint>
+
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <textarea  matInput placeholder=" User Story ID" formControlName="user_story_id" class="person-input" ></textarea>
+      <mat-hint align="end">{{frm.controls.user_story_id.value?.length || 0}}/10</mat-hint>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="string" placeholder="dept_id" formControlName='dept_id' readonly>
+      <mat-hint align="end">{{frm.controls.dept_id.value?.length || 0}}/10</mat-hint>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="string" placeholder="epic_id" formControlName='epic_id' readonly>
+      <mat-hint align="end">{{frm.controls.epic_id.value?.length || 0}}/10</mat-hint>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+      <textarea  matInput placeholder="epic_desc" formControlName="epic_desc" class="person-input" ></textarea>
+      <mat-hint align="end">{{frm.controls.epic_desc.value?.length || 0}}/10</mat-hint>
+
+    </mat-form-field>
+
+    <br />
+
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Cancelar</button>
+  <button mat-raised-button color="primary" (click)='editForm(frm)' class="btnSave" [disabled]="!frm.valid">
+    <mat-icon aria-label="icon-button">save </mat-icon>
+    <span>Save</span>
+  </button>
+</div>

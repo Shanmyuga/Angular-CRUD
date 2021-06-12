@@ -1,0 +1,62 @@
+<h1 mat-dialog-title> {{ data.title }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="frm">
+
+
+
+
+
+
+    <mat-form-field>
+      <mat-label>Custom EPIC Dept</mat-label>
+      <mat-select formControlName="epic_dept" (selectionChange)="doSomething($event)" >
+
+        <mat-option *ngFor="let dept of departments"  value={{dept._label}}>
+          {{dept._value}}</mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+    <br />
+
+
+    <mat-form-field >
+      <mat-label>EPIC WorkOrder</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="WorkOrder"
+             matInput
+              formControlName="workOrder_desc"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let work of filteredOptions | async" value={{work}}>
+          {{work}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br />
+
+
+    <mat-form-field>
+      <mat-label>Standard Epics for Dept</mat-label>
+      <mat-select formControlName="standard_epic_id"  multiple >
+        <app-select-check-all [model]="frm.get('standard_epic_id')"
+                              [values]="standardEpicLabels">
+        </app-select-check-all>
+        <mat-option *ngFor="let epic of standardEpics"  value={{epic._value}}>
+          {{epic._label}}</mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Cancelar</button>
+  <button mat-raised-button color="primary" (click)='save(frm)' class="btnSave" [disabled]="!frm.valid">
+    <mat-icon aria-label="icon-button">save </mat-icon>
+    <span>Save</span>
+  </button>
+</div>
