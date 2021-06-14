@@ -1,8 +1,8 @@
-import { Component, AfterViewInit, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ChangeDetectorRef, OnInit, ElementRef} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+import * as XLSX from 'xlsx';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -41,6 +41,7 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private epicService: EpicService,
@@ -182,4 +183,6 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
       }
     });
   }
+
+
 }

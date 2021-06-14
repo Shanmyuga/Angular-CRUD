@@ -15,7 +15,11 @@ import {Observable} from "rxjs";
 export class FormsComponent implements OnInit {
   public frm: FormGroup;
 
-
+  public departments: any[];
+  public standardEpics: any[];
+  options:  string[] = new Array();
+  standardEpicLabels:  string[] = new Array();
+  filteredOptions: Observable<string[]>;
   constructor(
     public dialogRef: MatDialogRef<FormsComponent>,
     @Inject(MAT_DIALOG_DATA)

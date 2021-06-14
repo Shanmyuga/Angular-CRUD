@@ -33,7 +33,7 @@
         </button>
       </div>
 
-      <mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="id" matSortDisableClear
+      <mat-table #table matTableExporter [dataSource]="dataSource" class="person-table" matSort matSortActive="id"  #exporter="matTableExporter"  matSortDisableClear
                  matSortDirection="desc">
         <!-- Table content -->
 
@@ -93,4 +93,7 @@
       </mat-paginator>
     </mat-card-content>
   </mat-card>
+  <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
+  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+
 </div>

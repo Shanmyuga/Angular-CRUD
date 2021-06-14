@@ -1,8 +1,9 @@
 // CONTIENE TODOS LOS MODULOS DE ANGULAR MATERIAL
 
 import { NgModule } from '@angular/core';
-
+import {CdkTableModule} from "@angular/cdk/table";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTableExporterModule} from "mat-table-exporter";
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -37,7 +38,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
     imports: [
         MatAutocompleteModule,
-
+      MatTableExporterModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatCardModule,
@@ -68,11 +69,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatTableModule,
         MatTabsModule,
         MatToolbarModule,
-        MatTooltipModule
+        MatTooltipModule,
+      CdkTableModule
     ],
     exports: [
         MatAutocompleteModule,
-
+      MatTableExporterModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatCardModule,
@@ -103,7 +105,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatTableModule,
         MatTabsModule,
         MatToolbarModule,
-        MatTooltipModule
+        MatTooltipModule,
+      CdkTableModule
     ]
 })
 export class MaterialComponentsModule { }

@@ -34,6 +34,10 @@ const routes: Routes = [
         loadChildren: '~modules/epic/epic.module#EpicModule',
       },
       {
+        path: 'backlog',
+        loadChildren: '~modules/backlog/backlog.module#BacklogModule',
+      },
+      {
         path: 'users',
         loadChildren: '~modules/user/user.module#UserModule',
       },

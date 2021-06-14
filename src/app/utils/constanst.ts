@@ -23,6 +23,14 @@ export const CONSTANST = {
         epicDept: HOST + '/api/epic/dept/epic',
         workorder: HOST + '/api/epic/workorder/all'
       },
+
+      backlog: {
+        list: HOST + '/api/backlog/all',
+        delete: HOST + '/api/backlog/delete/:id',
+        save: HOST + '/api/backlog/save',
+        get: HOST + '/api/backlog/find/:id'
+
+      },
         user: {}
     },
     lang: {},

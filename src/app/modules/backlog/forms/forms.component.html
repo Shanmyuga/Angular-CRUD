@@ -10,7 +10,7 @@
 
     <mat-form-field>
       <mat-label>Custom EPIC Dept</mat-label>
-      <mat-select formControlName="epic_dept" (selectionChange)="doSomething($event)" >
+      <mat-select formControlName="epic_dept"  >
 
         <mat-option *ngFor="let dept of departments"  value={{dept._label}}>
           {{dept._value}}</mat-option>
@@ -38,17 +38,7 @@
     <br />
 
 
-    <mat-form-field>
-      <mat-label>Standard Epics for Dept</mat-label>
-      <mat-select formControlName="standard_epic_id"  multiple >
-        <app-select-check-all [model]="frm.get('standard_epic_id')"
-                              [values]="standardEpicLabels">
-        </app-select-check-all>
-        <mat-option *ngFor="let epic of standardEpics"  value={{epic._value}}>
-          {{epic._label}}</mat-option>
-      </mat-select>
 
-    </mat-form-field>
 
   </form>
 </div>

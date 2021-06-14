@@ -32,10 +32,8 @@ ASI SE EVITA SATURAR ESTE ARCHIVO DE IMPORTACIONES Y SE MODULARIZA EL PROYECTO.*
 import { UserModule } from '~modules/user/user.module';
 import { AdminLayoutModule } from '~modules/admin-layout/admin-layout.module';
 import { LoginLayoutModule } from '~modules/login-layout/login-layout.module';
-import { EpicComponent } from '~modules/epic/epic.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
-import { BacklogComponent } from './modules/backlog/backlog.component';
 
 @NgModule({
   declarations: [ /*DECLARACIÓN DE COMPONENTES*/
@@ -45,9 +43,9 @@ import { BacklogComponent } from './modules/backlog/backlog.component';
     NotFoundComponent,
     ConfirmComponent,
     SnackbarComponent,
-    AutocompleteComponent,
+    AutocompleteComponent
 
-    BacklogComponent
+
 
   ],
   imports: [ /*DECLARACIÓN DE MODULOS*/
