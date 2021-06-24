@@ -17,8 +17,10 @@ export class FormsComponent implements OnInit {
   public frm: FormGroup;
   public departments: any[];
   public standardEpics: any[];
+  public deptEpics: any[];
   options:  string[] = new Array();
    standardEpicLabels:  string[] = new Array();
+  epicLabels:  string[] = new Array();
   filteredOptions: Observable<string[]>;
   constructor(
     public dialogRef: MatDialogRef<FormsComponent>,
@@ -74,7 +76,7 @@ export class FormsComponent implements OnInit {
       workOrder_desc: new FormControl(IS_EDITING ? data.workOrder_desc : null,[Validators.required, Validators.minLength(2)]),
 
       epic_dept: new FormControl(IS_EDITING ? data.epic_dept : null, [Validators.required, Validators.minLength(2)]),
-
+      epic_id: new FormControl(IS_EDITING ? data.epic_id : null),
 
       standard_epic_id: new FormControl(IS_EDITING ? data.standard_epic_id : null)
     });
@@ -97,9 +99,21 @@ export class FormsComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  doSomething(event) {
+  doLoadEpics(event) {
     let dept = this.frm.get('epic_dept').value
     this.epicService.getEpicsByDept(dept).subscribe((data: any) => {
+      if(data.success) {
+        this.deptEpics = data.data;
+        data.data.forEach(d1 => {
+          this.epicLabels.push(d1._value);
+        });
+      }
+    });
+  }
+
+  doLoadTasks(event) {
+    let epic_id = this.frm.get('epic_id').value
+    this.epicService.getTasksByEpic(epic_id).subscribe((data: any) => {
       if(data.success) {
         this.standardEpics = data.data;
         data.data.forEach(d1 => {

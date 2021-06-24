@@ -18,9 +18,11 @@ export const CONSTANST = {
         list: HOST + '/api/epic/all',
         delete: HOST + '/api/epic/delete/:id',
         save: HOST + '/api/epic/save',
+        saveCustom: HOST + '/api/epic/saveCustom',
         get: HOST + '/api/epic/find/:id',
         dept: HOST + '/api/epic/dept/all',
         epicDept: HOST + '/api/epic/dept/epic',
+        epicTasks: HOST + '/api/epic/epic/tasks',
         workorder: HOST + '/api/epic/workorder/all'
       },
 
@@ -28,10 +30,31 @@ export const CONSTANST = {
         list: HOST + '/api/backlog/all',
         delete: HOST + '/api/backlog/delete/:id',
         save: HOST + '/api/backlog/save',
-        get: HOST + '/api/backlog/find/:id'
+        saveSprint: HOST + '/api/backlog/saveSprint',
+        get: HOST + '/api/backlog/find/:id',
+        deptSprint: HOST + '/api/backlog/dept/sprint'
 
       },
-        user: {}
+
+      sprint: {
+        list: HOST + '/api/sprint/all',
+        delete: HOST + '/api/sprint/delete/:id',
+        save: HOST + '/api/sprint/save',
+        updateSprintToBackLog: HOST + '/api/sprint/updateBkLog',
+        closeStory : HOST + '/api/sprint/closeStory',
+        saveSprint: HOST + '/api/sprint/saveSprint',
+        get: HOST + '/api/sprint/find/:id',
+        deptSprint: HOST + '/api/sprint/dept/sprint',
+        sprintData: HOST + '/api/sprint/name/all',
+        users:  HOST + '/api/sprint/users/all'
+
+
+      },
+        user: {
+          pmroleCheck: HOST + '/api/user/role/pmrolecheck'
+
+
+        }
     },
     lang: {},
     session: {},

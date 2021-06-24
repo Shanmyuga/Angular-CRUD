@@ -2,8 +2,8 @@
   <mat-card>
     <mat-card-header>
       <i class="material-icons">supervised_user_circle</i>
-      <mat-card-title>Backlog</mat-card-title>
-      <mat-card-subtitle>Add, update or delete Backlog</mat-card-subtitle>
+      <mat-card-title>Sprint</mat-card-title>
+      <mat-card-subtitle>Sprint updates</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
@@ -15,39 +15,42 @@
       <div class="table-header">
         <!-- Table search input -->
         <mat-form-field class="filter-field">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by dept_id"
-                 [(ngModel)]="searchByDept">
-          <button mat-button *ngIf="searchByDept" matSuffix mat-icon-button aria-label="Clear"
-                  (click)="searchByDept=''; applyFilter('')">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <br/>
-        <mat-form-field class="filter-field">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by, epic_desc "
-                 [(ngModel)]="searchByDesc">
-          <button mat-button *ngIf="searchByDesc" matSuffix mat-icon-button aria-label="Clear"
-                  (click)="searchByDesc=''; applyFilter('')">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <br/>
-        <mat-form-field class="filter-field">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by seq_work_id"
-                 [(ngModel)]="searchByWork">
-          <button mat-button *ngIf="searchByWork" matSuffix mat-icon-button aria-label="Clear"
-                  (click)="searchByWork=''; applyFilter('')">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <!-- Add button -->
-      <!--  <button mat-raised-button (click)="save()" style="margin-bottom: 15px;margin-right: 30px" color="primary">
-          <mat-icon>add</mat-icon> Add Standard EPIC/User Story to BackLog
-        </button>
 
-        <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary">
-          <mat-icon>add</mat-icon> Add Custom EPIC/User Story to BackLog
-        </button>-->
+
+            <mat-label> EPIC Dept</mat-label>
+            <mat-select [(ngModel)]="searchByDept"  (selectionChange)="doLoadSprints($event)" >
+
+              <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
+                {{dept._label}}</mat-option>
+
+            </mat-select>
+
+
+        </mat-form-field>
+        <br/>
+        <!-- Table search input -->
+        <mat-form-field class="filter-field">
+
+
+          <mat-label> Select Sprint</mat-label>
+          <mat-select [(ngModel)]="searchBySprint"  (selectionChange)="doLoadSprintData($event)" >
+
+            <mat-option *ngFor="let sprint of sprintNames"  value={{sprint._label}}>
+              {{sprint._label}}</mat-option>
+
+          </mat-select>
+
+
+        </mat-form-field>
+
+        <!-- Add button -->
+        <!--  <button mat-raised-button (click)="save()" style="margin-bottom: 15px;margin-right: 30px" color="primary">
+            <mat-icon>add</mat-icon> Add Standard EPIC/User Story to BackLog
+          </button>
+
+          <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary">
+            <mat-icon>add</mat-icon> Add Custom EPIC/User Story to BackLog
+          </button>-->
       </div>
 
       <mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="id" matSortDisableClear
@@ -87,8 +90,16 @@
           <mat-header-cell *matHeaderCellDef>epic_status</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._epic_status }}</mat-cell>
         </ng-container>
+        <ng-container matColumnDef="_comments">
+          <mat-header-cell *matHeaderCellDef>Comments</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._comments }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="_assigned_to">
+          <mat-header-cell *matHeaderCellDef>Assigned_to</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._assigned_to }}</mat-cell>
+        </ng-container>
         <!-- Table actions -->
-        <ng-container matColumnDef="_seq_backlog_id">
+        <ng-container matColumnDef="_seq_sprint_job_id">
           <mat-header-cell *matHeaderCellDef>
             Actions
           </mat-header-cell>
@@ -99,14 +110,17 @@
               <i class="material-icons">more_vert</i>
             </button>
             <mat-menu #menu="matMenu">
-             <!-- <button mat-menu-item (click)="edit(row)">
-                <mat-icon aria-label="Edit">create</mat-icon> Edit
-              </button>-->
-              <button mat-menu-item (click)="delete(row)">
-                <mat-icon aria-label="Delete">clear</mat-icon> Delete
+              <!-- <button mat-menu-item (click)="edit(row)">
+                 <mat-icon aria-label="Edit">create</mat-icon> Edit
+               </button>-->
+              <button mat-menu-item (click)="updateBackLog(row)" *ngIf="row._epic_status == 'IN_SPRINT' && role == true">
+                <mat-icon aria-label="Delete">edit</mat-icon> Return to BackLog
               </button>
-              <button mat-menu-item (click)="addToSprint(row)">
-                <mat-icon aria-label="Add to Sprint">create</mat-icon> Add to Sprint
+              <button mat-menu-item (click)="closeStory(row)" *ngIf="row._epic_status == 'IN_SPRINT' && role == true">
+                <mat-icon aria-label="Delete">edit</mat-icon> Close Story
+              </button>
+              <button mat-menu-item (click)="updateStory(row)">
+                <mat-icon aria-label="Edit">create</mat-icon> Update Story Progress
               </button>
             </mat-menu>
           </mat-cell>

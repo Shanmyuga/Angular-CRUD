@@ -7,5 +7,6 @@ export interface backlog {
   dept_id: string;
   workOrder_desc: string;
   seq_work_id: number;
-
+  backlog_id: number;
+  sprint_id: number;
 }

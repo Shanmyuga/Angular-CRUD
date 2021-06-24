@@ -38,7 +38,7 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
   public isTotalReached = false;
   public totalItems = 0;
   public search = '';
-
+  public role= false;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -58,7 +58,11 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
     if (!this.authService.loggedIn.getValue()) {
       this.router.navigate(['/login']);
     }
-
+      this.authService.checkPMRole().subscribe((data: any) => {
+        if(data.success) {
+          this.role = true;
+        }
+      });
 
 
 

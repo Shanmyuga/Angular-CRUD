@@ -1,21 +1,22 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import {BacklogService} from "~services/backlog.service";
-import { SnackbarComponent } from '../../../components/snackbar/snackbar.component';
-import {map, startWith} from "rxjs/operators";
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackbarComponent} from "~components/snackbar/snackbar.component";
+import {SprintService} from "~services/sprint.service";
 
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.scss']
+  styleUrls: ['./forms.component.css']
 })
 export class FormsComponent implements OnInit {
   public frm: FormGroup;
 
   public sprints: any[];
+  public users: any[];
+
   public standardEpics: any[];
   options:  string[] = new Array();
   standardEpicLabels:  string[] = new Array();
@@ -25,7 +26,7 @@ export class FormsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: any,
     private fb: FormBuilder,
-    private backLogService: BacklogService,
+    private sprintService: SprintService,
     public snack: MatSnackBar
   ) {
   }
@@ -36,10 +37,9 @@ export class FormsComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
-    console.log(this.data.data[0]._dept_id);
-    this.backLogService.getSprintByDept(this.data.data[0]._dept_id).subscribe((data: any) => {
+    this.sprintService.getUsers().subscribe((data: any) => {
       if(data.success) {
-        this.sprints = data.data;
+        this.users = data.data;
       }
     });
   }
@@ -63,15 +63,17 @@ export class FormsComponent implements OnInit {
       dept_id: new FormControl(IS_EDITING ? data[0]._dept_id : null, [Validators.required, Validators.minLength(2)]),
 
       epic_desc: new FormControl(IS_EDITING ? data[0]._epic_desc : null, [Validators.required, Validators.minLength(2)]),
-      sprint_id: new FormControl(IS_EDITING ? data[0]._sprint_id : null),
-      backlog_id: new FormControl(IS_EDITING ? data[0]._seq_backlog_id : null),
+      seq_sprint_job_id: new FormControl(IS_EDITING ? data[0]._seq_sprint_job_id : null),
+      seq_backlog_id: new FormControl(IS_EDITING ? data[0]._seq_backlog_id : null),
       job_desc: new FormControl(IS_EDITING ? data[0]._job_desc : null),
-      epic_id: new FormControl(IS_EDITING ? data[0]._epic_id : null)
+      epic_id: new FormControl(IS_EDITING ? data[0]._epic_id : null),
+      comments: new FormControl(IS_EDITING ? data[0]._comments : null),
+      assigned_to: new FormControl(IS_EDITING ? data[0]._assigned_to : null)
     });
   }
 
   public save(form: FormGroup) {
-    this.backLogService.saveToSprint(form.value).subscribe((data: any) => {
+    this.sprintService.save(form.value).subscribe((data: any) => {
       this.openSnack(data);
 
       if (data.success) {
@@ -86,3 +88,4 @@ export class FormsComponent implements OnInit {
   }
 
 }
+

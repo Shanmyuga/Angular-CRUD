@@ -1,6 +1,6 @@
 import { PageEvent } from '@angular/material/paginator';
-import {backlogResponse} from "../models/backlogResponse";
-export abstract class BackLogController {
+import {sprintResponse} from "../models/sprintResponse";
+export abstract class Sprintcontroller {
 
   constructor() { }
 
@@ -28,10 +28,10 @@ export abstract class BackLogController {
 
   abstract getData(): void;
 
-  abstract edit(backlogResponse: backlogResponse): void;
+  abstract edit(sprintResponse: sprintResponse): void;
 
   abstract save(): void;
 
-  abstract delete(backlogResponse: backlogResponse): void;
+  abstract delete(sprintResponse: sprintResponse): void;
 
 }

@@ -28,7 +28,7 @@
           <mat-icon>add</mat-icon> Add Standard EPIC/User Story to BackLog
         </button>
 
-        <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary">
+        <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary" *ngIf="role == true">
           <mat-icon>add</mat-icon> Add Custom EPIC/User Story to BackLog
         </button>
       </div>

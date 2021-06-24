@@ -50,7 +50,11 @@ export class EpicService implements  EpicProvider {
     params = params.append('dept', dept);
     return this.http.get<Response>(CONSTANST.routes.epic.epicDept,{ headers: this.headers ,params:params});
   }
-
+  getTasksByEpic(epicId: string) {
+    let params = new HttpParams();
+    params = params.append('epicId', epicId);
+    return this.http.get<Response>(CONSTANST.routes.epic.epicTasks,{ headers: this.headers ,params:params});
+  }
   getWorkOrders() {
     return this.http.get<Response>(CONSTANST.routes.epic.workorder,{ headers: this.headers });
   }
@@ -82,6 +86,21 @@ export class EpicService implements  EpicProvider {
       { headers: this.headers }
     );
   }
+  saveCustom(epic: epic): Observable<Response> {
 
+
+    return this.http.post<Response>(
+      CONSTANST.routes.epic.saveCustom,
+      {
+        dept_id: epic.dept_id,
+
+        custom_user_story_desc: epic.user_story_desc,
+        custom_user_story_id: epic.user_story_id,
+        standard_epic_id: epic.epic_id,
+        workOrder_desc: epic.workOrder_desc
+      },
+      { headers: this.headers }
+    );
+  }
 
 }

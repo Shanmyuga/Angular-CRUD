@@ -40,6 +40,16 @@ export class AuthService {
     );
   }
 
+  checkPMRole(): Observable<Response> {
+    this.headers = new HttpHeaders({
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    });
+    return this.http.get<Response>(
+      CONSTANST.routes.user.pmroleCheck,
+      { headers: this.headers }
+    );
+  }
+
   hasToken(): boolean {
     return !!localStorage.getItem('token');
   }

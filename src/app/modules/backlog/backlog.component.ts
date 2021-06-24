@@ -9,11 +9,15 @@ import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {BackLogController} from "~base/backlogcontroller";
-import {backlog} from "~models/backlog";
+import {backlogResponse} from "~models/backlogResponse";
 import {merge, of as observableOf} from "rxjs";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
+import { FormsComponent } from '~modules/backlog/forms/forms.component';
+
 import {BackLogProvider} from "~base/backlogprovider";
 import {SnackbarComponent} from "~components/snackbar/snackbar.component";
+import {CustomepicComponent} from "~modules/epic/customepic/customepic.component";
+import {ConfirmComponent} from "~components/confirm/confirm.component";
 
 @Component({
   selector: 'app-backlog',
@@ -89,10 +93,29 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
     });
   }
 
-  delete(backlog: backlog): void {
+  delete(backlogResponse: backlogResponse): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '250px',
+      data: {
+        title: 'Delete record',
+        message: 'Are you sure you want to delete this record?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.backLogService.delete(backlogResponse._seq_backlog_id).subscribe((data: any) => {
+          this.openSnack(data);
+          if (data.success) {
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+        });
+      }
+    });
   }
 
-  edit(backlog: backlog): void {
+  edit(backlogResponse: backlogResponse): void {
+
   }
 
   getData(): void {
@@ -130,5 +153,24 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
 
   save(): void {
   }
+
+  addToSprint(backlogResponse: backlogResponse): void {
+    console.log(backlogResponse);
+    this.backLogService.getOne(backlogResponse._seq_backlog_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(FormsComponent, {
+          width: '75%',
+          data: { title: 'Add to Sprint', action: 'edit', data: data.data }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+        });
+      }
+    });
+  }
+
 
 }

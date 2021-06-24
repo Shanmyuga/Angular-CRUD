@@ -38,6 +38,10 @@ const routes: Routes = [
         loadChildren: '~modules/backlog/backlog.module#BacklogModule',
       },
       {
+        path: 'sprint',
+        loadChildren: '~modules/sprint/sprint.module#SprintModule',
+      },
+      {
         path: 'users',
         loadChildren: '~modules/user/user.module#UserModule',
       },

@@ -9,8 +9,8 @@
 
 
     <mat-form-field>
-      <mat-label>Custom EPIC Dept</mat-label>
-      <mat-select formControlName="epic_dept" (selectionChange)="doSomething($event)" >
+      <mat-label> EPIC Dept</mat-label>
+      <mat-select formControlName="epic_dept" (selectionChange)="doLoadEpics($event)" >
 
         <mat-option *ngFor="let dept of departments"  value={{dept._label}}>
           {{dept._value}}</mat-option>
@@ -19,22 +19,17 @@
     </mat-form-field>
 
     <br />
+    <mat-form-field>
+      <mat-label> EPIC JOB</mat-label>
+      <mat-select formControlName="epic_id"  (selectionChange)="doLoadTasks($event)" >
 
+        <mat-option *ngFor="let dept of deptEpics"  value={{dept._value}}>
+          {{dept._label}}</mat-option>
+      </mat-select>
 
-    <mat-form-field >
-      <mat-label>EPIC WorkOrder</mat-label>
-      <input type="text"
-             placeholder="Pick one"
-             aria-label="WorkOrder"
-             matInput
-              formControlName="workOrder_desc"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let work of filteredOptions | async" value={{work}}>
-          {{work}}
-        </mat-option>
-      </mat-autocomplete>
     </mat-form-field>
+
+
     <br />
 
 
@@ -49,7 +44,21 @@
       </mat-select>
 
     </mat-form-field>
-
+<br/>
+    <mat-form-field >
+      <mat-label>EPIC WorkOrder</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="WorkOrder"
+             matInput
+             formControlName="workOrder_desc"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let work of filteredOptions | async" value={{work}}>
+          {{work}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </form>
 </div>
 

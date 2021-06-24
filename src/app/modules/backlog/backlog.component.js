@@ -11,9 +11,12 @@ var core_1 = require("@angular/core");
 var table_1 = require("@angular/material/table");
 var paginator_1 = require("@angular/material/paginator");
 var sort_1 = require("@angular/material/sort");
+var backlog_service_1 = require("~services/backlog.service");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
+var forms_component_1 = require("~modules/backlog/forms/forms.component");
 var snackbar_component_1 = require("~components/snackbar/snackbar.component");
+var confirm_component_1 = require("~components/confirm/confirm.component");
 var BacklogComponent = /** @class */ (function () {
     function BacklogComponent(changeDetectorRef, backLogService, authService, router, dialog, snack) {
         this.changeDetectorRef = changeDetectorRef;
@@ -31,7 +34,9 @@ var BacklogComponent = /** @class */ (function () {
         this.isLoading = false;
         this.isTotalReached = false;
         this.totalItems = 0;
-        this.search = '';
+        this.searchByDept = '';
+        this.searchByDesc = '';
+        this.searchByWork = '';
     }
     BacklogComponent.prototype.ngAfterViewInit = function () {
         // ANTES QUE LA VISTA CARGUE INICIA LA CARGA DE DATOS EN EL GRID
@@ -61,9 +66,27 @@ var BacklogComponent = /** @class */ (function () {
             duration: 3000
         });
     };
-    BacklogComponent.prototype["delete"] = function (backlog) {
+    BacklogComponent.prototype["delete"] = function (backlogResponse) {
+        var _this = this;
+        var dialogRef = this.dialog.open(confirm_component_1.ConfirmComponent, {
+            width: '250px',
+            data: {
+                title: 'Delete record',
+                message: 'Are you sure you want to delete this record?'
+            }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result) {
+                _this.backLogService["delete"](backlogResponse._seq_backlog_id).subscribe(function (data) {
+                    _this.openSnack(data);
+                    if (data.success) {
+                        _this.paginator._changePageSize(_this.paginator.pageSize);
+                    }
+                });
+            }
+        });
     };
-    BacklogComponent.prototype.edit = function (backlog) {
+    BacklogComponent.prototype.edit = function (backlogResponse) {
     };
     BacklogComponent.prototype.getData = function () {
         var _this = this;
@@ -71,7 +94,7 @@ var BacklogComponent = /** @class */ (function () {
         rxjs_1.merge(this.sort.sortChange, this.paginator.page)
             .pipe(operators_1.startWith({}), operators_1.switchMap(function () {
             _this.isLoading = true;
-            return _this.backLogService.getList(_this.sort.active, _this.sort.direction, _this.pageSize, _this.page, _this.search);
+            return _this.backLogService.getList(_this.sort.active, _this.sort.direction, _this.pageSize, _this.page, _this.searchByDept, _this.searchByDesc, _this.searchByWork);
         }), operators_1.map(function (data) {
             _this.isLoading = false;
             _this.isTotalReached = false;
@@ -85,6 +108,23 @@ var BacklogComponent = /** @class */ (function () {
     };
     BacklogComponent.prototype.save = function () {
     };
+    BacklogComponent.prototype.addToSprint = function (backlogResponse) {
+        var _this = this;
+        console.log(backlogResponse);
+        this.backLogService.getOne(backlogResponse._seq_backlog_id).subscribe(function (data) {
+            if (data.success) {
+                var dialogRef = _this.dialog.open(forms_component_1.FormsComponent, {
+                    width: '75%',
+                    data: { title: 'Add to Sprint', action: 'edit', data: data.data }
+                });
+                dialogRef.afterClosed().subscribe(function (result) {
+                    if (result) {
+                        _this.paginator._changePageSize(_this.paginator.pageSize);
+                    }
+                });
+            }
+        });
+    };
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator, { static: false })
     ], BacklogComponent.prototype, "paginator");
@@ -95,7 +135,8 @@ var BacklogComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-backlog',
             templateUrl: './backlog.component.html',
-            styleUrls: ['./backlog.component.css']
+            styleUrls: ['./backlog.component.css'],
+            providers: [backlog_service_1.BacklogService]
         })
     ], BacklogComponent);
     return BacklogComponent;

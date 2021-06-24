@@ -23,7 +23,7 @@
 
     </mat-form-field>
     <mat-form-field>
-      <input  matInput placeholder="Back Log ID" formControlName="backlog_id" class="person-input" readonly/>
+      <input  matInput placeholder="Back Log ID" formControlName="seq_backlog_id" class="person-input" readonly/>
 
 
     </mat-form-field>
@@ -43,18 +43,25 @@
     </mat-form-field>
 
     <br />
-
     <mat-form-field>
-      <mat-label> Sprint name</mat-label>
-      <mat-select formControlName="sprint_id"  >
+      <input  matInput placeholder=" Sprint JOB Id" formControlName="seq_sprint_job_id" class="person-input" readonly />
 
-        <mat-option *ngFor="let sprint of sprints"  value={{sprint._value}}>
-          {{sprint._label}}</mat-option>
+
+    </mat-form-field>
+    <mat-form-field>
+      <textarea  matInput placeholder="User Comments" formControlName="comments" class="person-input"  ></textarea>
+      <mat-hint align="end">{{frm.controls.comments.value?.length || 0}}/250</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label> Assigned To</mat-label>
+      <mat-select formControlName="assigned_to"  >
+
+        <mat-option *ngFor="let user of users"  value={{user._value}}>
+          {{user._label}}</mat-option>
       </mat-select>
 
     </mat-form-field>
-    <br>
-
   </form>
 </div>
 

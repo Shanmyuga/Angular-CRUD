@@ -33,6 +33,8 @@ import { UserModule } from '~modules/user/user.module';
 import { AdminLayoutModule } from '~modules/admin-layout/admin-layout.module';
 import { LoginLayoutModule } from '~modules/login-layout/login-layout.module';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import {BacklogService} from "~services/backlog.service";
+import {SprintService} from "~services/sprint.service";
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
     AuthService,
     UserService,
     ClientService,
-    EpicService
+    EpicService,
+    BacklogService,
+    SprintService
   ],
   entryComponents: [ /*AQUI SE AGREGAN LOS MAT-CONFIRM Y LOS MAT-SNACKBAR DE ANGULAR MATERIAL*/
     ConfirmComponent,

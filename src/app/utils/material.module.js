@@ -9,7 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.MaterialComponentsModule = void 0;
 var core_1 = require("@angular/core");
+var table_1 = require("@angular/cdk/table");
 var autocomplete_1 = require("@angular/material/autocomplete");
+var mat_table_exporter_1 = require("mat-table-exporter");
 var button_1 = require("@angular/material/button");
 var button_toggle_1 = require("@angular/material/button-toggle");
 var card_1 = require("@angular/material/card");
@@ -36,7 +38,7 @@ var slider_1 = require("@angular/material/slider");
 var snack_bar_1 = require("@angular/material/snack-bar");
 var sort_1 = require("@angular/material/sort");
 var stepper_1 = require("@angular/material/stepper");
-var table_1 = require("@angular/material/table");
+var table_2 = require("@angular/material/table");
 var tabs_1 = require("@angular/material/tabs");
 var toolbar_1 = require("@angular/material/toolbar");
 var tooltip_1 = require("@angular/material/tooltip");
@@ -47,6 +49,7 @@ var MaterialComponentsModule = /** @class */ (function () {
         core_1.NgModule({
             imports: [
                 autocomplete_1.MatAutocompleteModule,
+                mat_table_exporter_1.MatTableExporterModule,
                 button_1.MatButtonModule,
                 button_toggle_1.MatButtonToggleModule,
                 card_1.MatCardModule,
@@ -74,13 +77,15 @@ var MaterialComponentsModule = /** @class */ (function () {
                 snack_bar_1.MatSnackBarModule,
                 sort_1.MatSortModule,
                 stepper_1.MatStepperModule,
-                table_1.MatTableModule,
+                table_2.MatTableModule,
                 tabs_1.MatTabsModule,
                 toolbar_1.MatToolbarModule,
-                tooltip_1.MatTooltipModule
+                tooltip_1.MatTooltipModule,
+                table_1.CdkTableModule
             ],
             exports: [
                 autocomplete_1.MatAutocompleteModule,
+                mat_table_exporter_1.MatTableExporterModule,
                 button_1.MatButtonModule,
                 button_toggle_1.MatButtonToggleModule,
                 card_1.MatCardModule,
@@ -108,10 +113,11 @@ var MaterialComponentsModule = /** @class */ (function () {
                 snack_bar_1.MatSnackBarModule,
                 sort_1.MatSortModule,
                 stepper_1.MatStepperModule,
-                table_1.MatTableModule,
+                table_2.MatTableModule,
                 tabs_1.MatTabsModule,
                 toolbar_1.MatToolbarModule,
-                tooltip_1.MatTooltipModule
+                tooltip_1.MatTooltipModule,
+                table_1.CdkTableModule
             ]
         })
     ], MaterialComponentsModule);
