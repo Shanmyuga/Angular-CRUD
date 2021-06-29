@@ -64,7 +64,7 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
           this.role = true;
         }
       });
-
+    console.log("role"+this.role)
 
 
   }
@@ -202,5 +202,7 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
     });
   }
 
-
+  getRole() {
+    return this.role;
+  }
 }
