@@ -19,6 +19,7 @@ import { SnackbarComponent } from '~components/snackbar/snackbar.component';
 import {EpicService} from "~services/epic.service";
 
 import {Controller} from "~base/epiccontroller";
+import {EpicworkComponent} from "~modules/epic/epicwork/epicwork.component";
 
 @Component({
   selector: 'app-epic',
@@ -159,6 +160,19 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
     const dialogRef = this.dialog.open(CustomepicComponent, {
       width: '80%',
       data: { title: 'Add Custom Epic', action: 'save' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.paginator._changePageSize(this.paginator.pageSize);
+      }
+    });
+  }
+
+  saveAll(): void {
+    const dialogRef = this.dialog.open(EpicworkComponent, {
+      width: '80%',
+      data: { title: 'Add All Epic', action: 'save' }
     });
 
     dialogRef.afterClosed().subscribe(result => {

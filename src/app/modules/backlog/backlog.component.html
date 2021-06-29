@@ -40,6 +40,15 @@
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
+
+        <mat-form-field class="filter-field">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by Job Desc"
+                 [(ngModel)]="searchByWorkDesc">
+          <button mat-button *ngIf="searchByWorkDesc" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="searchByWorkDesc=''; applyFilter('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
         <!-- Add button -->
       <!--  <button mat-raised-button (click)="save()" style="margin-bottom: 15px;margin-right: 30px" color="primary">
           <mat-icon>add</mat-icon> Add Standard EPIC/User Story to BackLog

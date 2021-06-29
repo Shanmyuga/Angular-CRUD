@@ -19,6 +19,7 @@ export const CONSTANST = {
         delete: HOST + '/api/epic/delete/:id',
         save: HOST + '/api/epic/save',
         saveCustom: HOST + '/api/epic/saveCustom',
+        saveAll: HOST + '/api/epic/saveAll',
         get: HOST + '/api/epic/find/:id',
         dept: HOST + '/api/epic/dept/all',
         epicDept: HOST + '/api/epic/dept/epic',

@@ -39,6 +39,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
   public searchByDept = '';
   public searchByDesc = '';
   public searchByWork = '';
+  public searchByWorkDesc = '';
   ngAfterViewInit(): void {
     // ANTES QUE LA VISTA CARGUE INICIA LA CARGA DE DATOS EN EL GRID
     this.getData();
@@ -134,7 +135,8 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
             this.page,
             this.searchByDept,
             this.searchByDesc,
-            this.searchByWork
+            this.searchByWork,
+            this.searchByWorkDesc,
           );
         }),
         map(data => {

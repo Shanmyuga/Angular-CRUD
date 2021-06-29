@@ -103,4 +103,17 @@ export class EpicService implements  EpicProvider {
     );
   }
 
+  saveAll(epic: epic): Observable<Response> {
+
+
+    return this.http.post<Response>(
+      CONSTANST.routes.epic.saveAll,
+      {
+
+        workOrder_desc: epic.workOrder_desc
+      },
+      { headers: this.headers }
+    );
+  }
+
 }

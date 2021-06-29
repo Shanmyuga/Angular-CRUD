@@ -6,6 +6,7 @@ import { EpicComponent } from './epic.component';
 import { FormsComponent } from './forms/forms.component';
 import { SelectCheckAllComponent } from './select-check-all/select-check-all.component';
 import { CustomepicComponent } from './customepic/customepic.component';
+import { EpicworkComponent } from './epicwork/epicwork.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CustomepicComponent } from './customepic/customepic.component';
     EpicComponent,
     FormsComponent,
     SelectCheckAllComponent,
-    CustomepicComponent
+    CustomepicComponent,
+    EpicworkComponent
   ],
   providers: [],
   entryComponents: [
