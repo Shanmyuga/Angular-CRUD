@@ -73,11 +73,7 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
         this.departments = data.data;
       }
     });
-    this.authService.checkPMRole().subscribe((data: any) => {
-      if(data.success) {
-        this.role = true;
-      }
-    });
+
 
 
   }
@@ -86,7 +82,6 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
   ngAfterViewChecked() {
     this.changeDetectorRef.detectChanges();
   }
-
 
   public onPaginateChange(event: any): void {
     this.page = event.pageIndex + 1;
@@ -147,7 +142,7 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
 
   save(): void {
     const dialogRef = this.dialog.open(FormsComponent, {
-      width: '400px',
+      width: '75%',
       data: { title: 'Add Bulletin', action: 'save' }
     });
 

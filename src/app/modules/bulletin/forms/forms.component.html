@@ -1,1 +1,62 @@
-<p>forms works!</p>
+<h1 mat-dialog-title> {{ data.title }}</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="frm">
+
+    <mat-form-field >
+      <mat-label> WorkOrder</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="WorkOrder"
+             matInput
+             formControlName="workOrder_desc"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let work of filteredOptions | async" value={{work}}>
+          {{work}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <mat-label> Dept assigned to</mat-label>
+      <mat-select formControlName="dept_assigned_to"  >
+
+        <mat-option *ngFor="let dept of departments"  value={{dept._label}}>
+          {{dept._value}}</mat-option>
+      </mat-select>
+
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a Target date</mat-label>
+      <!-- #docregion toggle -->
+      <input matInput [matDatepicker]="picker" formControlName="target_date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <!-- #enddocregion toggle -->
+    </mat-form-field>
+    <br/>
+
+    <br>
+    <mat-form-field>
+      <textarea  matInput placeholder="Message" formControlName="message" class="person-input"  ></textarea>
+      <mat-hint align="end">{{frm.controls.message.value?.length || 0}}/20</mat-hint>
+
+    </mat-form-field>
+    <br />
+
+
+
+
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Cancel</button>
+  <button mat-raised-button color="primary" (click)='save(frm)' class="btnSave" [disabled]="!frm.valid">
+    <mat-icon aria-label="icon-button">save </mat-icon>
+    <span>Save</span>
+  </button>
+</div>
