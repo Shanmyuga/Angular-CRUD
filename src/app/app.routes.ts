@@ -42,6 +42,10 @@ const routes: Routes = [
         loadChildren: '~modules/sprint/sprint.module#SprintModule',
       },
       {
+        path: 'bulletin',
+        loadChildren: '~modules/bulletin/bulletin.module#BulletinModule',
+      },
+      {
         path: 'users',
         loadChildren: '~modules/user/user.module#UserModule',
       },

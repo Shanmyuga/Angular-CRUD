@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { FormsComponent } from './forms/forms.component';
 import {RouterModule} from "@angular/router";
-import {SprintComponent} from "../sprint/sprint.component";
+import {BulletinComponent} from "../bulletin/bulletin.component";
 import {SharedModule} from "../../utils/shared.module";
 
 
 
 @NgModule({
   imports: [
-    RouterModule.forChild([{path: '', component: SprintComponent}]),
+    RouterModule.forChild([{path: '', component: BulletinComponent}]),
     SharedModule
   ],
   declarations: [
-    SprintComponent,
+    BulletinComponent,
     FormsComponent
 
 
@@ -25,4 +25,4 @@ import {SharedModule} from "../../utils/shared.module";
     RouterModule,
   ]
 })
-export class SprintModule { }
+export class BulletinModule { }

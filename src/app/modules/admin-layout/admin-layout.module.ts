@@ -7,6 +7,7 @@ import { ClientModule } from '~modules/client/client.module';
 import { EpicModule } from '~modules/epic/epic.module';
 import { BacklogModule } from '~modules/backlog/backlog.module';
 import {SprintModule} from "~modules/sprint/sprint.module";
+import {BulletinModule} from "~modules/bulletin/bulletin.module";
 @NgModule({
   imports: [
     RouterModule,
@@ -15,7 +16,8 @@ import {SprintModule} from "~modules/sprint/sprint.module";
     ClientModule,
     EpicModule,
     BacklogModule,
-    SprintModule
+    SprintModule,
+    BulletinModule
   ],
   declarations: [
     AdminLayoutComponent

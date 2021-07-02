@@ -36,7 +36,15 @@ export const CONSTANST = {
         deptSprint: HOST + '/api/backlog/dept/sprint'
 
       },
+      deptMessage: {
+        list: HOST + '/api/deptMessage/all',
+        delete: HOST + '/api/deptMessage/delete/:id',
+        save: HOST + '/api/deptMessage/save',
 
+        get: HOST + '/api/deptMessage/find/:id',
+
+
+      },
       sprint: {
         list: HOST + '/api/sprint/all',
         delete: HOST + '/api/sprint/delete/:id',
