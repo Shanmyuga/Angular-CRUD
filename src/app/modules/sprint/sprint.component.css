@@ -5,6 +5,12 @@
   width: 80vw;
   margin:5vh auto 9vh auto!important;
 }
+.mat-cell{
+
+  font-family:Verdana,sans-serif;
+  font-size:11px;
+  color: #1a084c;
+}
 
 .add-button {
   position: absolute;

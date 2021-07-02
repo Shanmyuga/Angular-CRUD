@@ -24,15 +24,16 @@
         </mat-form-field>
 
         <!-- Add button -->
-        <button mat-raised-button (click)="save()" style="margin-bottom: 15px;margin-right: 30px" color="primary">
-          <mat-icon>add</mat-icon> Add Standard EPIC/User Story to BackLog
+        <button mat-raised-button (click)="save()" style="margin-bottom: 15px;margin-right: 30px" color="primary" [style.visibility]="role? 'hidden': 'visible'">
+          <mat-icon>add</mat-icon> Add Standard EPIC/User
         </button>
 
-        <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary" *ngIf="role == true">
-          <mat-icon>add</mat-icon> Add Custom EPIC/User Story to BackLog
+        <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary" >
+          <mat-icon>add</mat-icon> Add Custom EPIC/User
         </button>
-        <button mat-raised-button (click)="saveAll()" style="margin-bottom: 15px;margin-left: 30px" color="primary" *ngIf="role == true">
-          <mat-icon>add</mat-icon> Add All  EPIC/User Story to BackLog to Workorder
+
+        <button mat-raised-button (click)="saveAll()" style="margin-bottom: 15px;margin-left: 30px" color="primary" [style.visibility]="role? 'hidden': 'visible'">
+          <mat-icon>add</mat-icon> Add All  EPIC/User
         </button>
       </div>
 
