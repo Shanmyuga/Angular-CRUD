@@ -22,7 +22,7 @@ import {FormsComponent} from "~modules/bulletin/forms/forms.component";
   providers:[BulletinService]
 })
 export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
-  public displayedColumns = ['_dept_created', '_dept_created_by', '_dept_message', '_dept_assigned_to',  '_ack_by', '_seq_dept_message_id','_job_desc','_target_date'];
+  public displayedColumns = [ '_dept_created_by', '_dept_message', '_dept_assigned_to',  '_ack_by', '_seq_dept_message_id','_job_desc','_target_date'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();

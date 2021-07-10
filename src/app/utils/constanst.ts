@@ -45,6 +45,16 @@ export const CONSTANST = {
 
 
       },
+      bulletin: {
+        list: HOST + '/api/bulletin/all',
+        delete: HOST + '/api/bulletin/delete/:id',
+        save: HOST + '/api/bulletin/save',
+
+        get: HOST + '/api/bulletin/find/:id',
+
+
+      },
+
       sprint: {
         list: HOST + '/api/sprint/all',
         delete: HOST + '/api/sprint/delete/:id',

@@ -46,7 +46,17 @@ export class BulletinService  implements BulletinProvider {
     return undefined;
   }
 
-  save(deptmessage: deptmessage): Observable<Response> {
-    return undefined;
+  save(deptMessage: deptmessage): Observable<Response> {
+    return this.http.post<Response>(
+      CONSTANST.routes.bulletin.save,
+      {
+        message: deptMessage.message,
+        dept_assigned_to: deptMessage.dept_assigned_to,
+        target_date: deptMessage.target_date,
+        job_desc: deptMessage.workOrder_desc
+        
+      },
+      { headers: this.headers }
+    );
   }
 }
