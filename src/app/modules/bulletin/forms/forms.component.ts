@@ -7,11 +7,29 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {map, startWith} from "rxjs/operators";
 import {SnackbarComponent} from "~components/snackbar/snackbar.component";
 import {BulletinService} from "~services/bulletin.service";
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL'
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY'
+  }
+};
 
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+    providers: [
+  { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+]
+
 })
 export class FormsComponent implements OnInit {
   public frm: FormGroup;
