@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
@@ -50,11 +50,15 @@ export class FormsComponent implements OnInit {
     private bulletinService: BulletinService,
     private epicService: EpicService,
     public snack: MatSnackBar
+
+
   ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+
 
   ngOnInit() {
     this.initializeForm();
@@ -99,17 +103,31 @@ export class FormsComponent implements OnInit {
       workOrder_desc: new FormControl(IS_EDITING ? data[0]._workOrder_desc : null, [ Validators.required,Validators.minLength(10)]),
       dept_assigned_to: new FormControl(IS_EDITING ? data[0]._dept_assigned_to : null, [ Validators.required,Validators.minLength(2)]),
       target_date: new FormControl(IS_EDITING ? data[0]._target_date : null,[Validators.required, Validators.minLength(2)]),
-      message: new FormControl(IS_EDITING ? data.message : null,[Validators.required, Validators.minLength(20)])
-
+      message: new FormControl(IS_EDITING ? data.message : null,[Validators.required, Validators.minLength(20)]),
+      attachments: new FormControl(IS_EDITING ? data.attachments : null)
 
 
 
     });
   }
-
+  upload(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.frm.patchValue({
+      attachments: file
+    });
+    this.frm.get('attachments').updateValueAndValidity()
+  }
   public save(form: FormGroup) {
     console.log(form.value);
-    this.bulletinService.save(form.value).subscribe((data: any) => {
+
+    const formData = new FormData();
+    formData.append("test",form.get('attachments').value);
+    formData.append("message",form.get('message').value);
+    formData.append('target_date',form.get('target_date').value);
+    formData.append('workOrder_desc',form.get('workOrder_desc').value);
+    formData.append('dept_assigned_to',form.get('dept_assigned_to').value);
+
+    this.bulletinService.saveFormData(formData).subscribe((data: any) => {
       this.openSnack(data);
 
       if (data.success) {
@@ -137,5 +155,8 @@ export class FormsComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+
+
 
 }

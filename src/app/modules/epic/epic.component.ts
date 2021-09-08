@@ -59,11 +59,7 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
     if (!this.authService.loggedIn.getValue()) {
       this.router.navigate(['/login']);
     }
-      this.authService.checkPMRole().subscribe((data: any) => {
-        if(data.success) {
-          this.role = true;
-        }
-      });
+
     console.log("role"+this.role)
 
 
@@ -71,7 +67,17 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
 
   ngAfterViewInit() {
     // ANTES QUE LA VISTA CARGUE INICIA LA CARGA DE DATOS EN EL GRID
+
+    this.authService.checkPMRole().subscribe((data: any) => {
+      console.log(data);
+      if(data.success) {
+        console.log("inside success");
+        this.role = true;
+        this.ngOnInit();
+      }
+    });
     this.getData();
+
   }
 
   ngAfterViewChecked() {

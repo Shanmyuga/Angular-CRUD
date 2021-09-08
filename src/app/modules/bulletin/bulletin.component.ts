@@ -15,6 +15,9 @@ import {deptMessResponse} from "~models/deptmessresponse";
 import {BulletinService} from "~services/bulletin.service";
 import {EpicService} from "~services/epic.service";
 import {FormsComponent} from "~modules/bulletin/forms/forms.component";
+import {Download} from "~services/download";
+import {CustomepicComponent} from "~modules/epic/customepic/customepic.component";
+import {AckformComponent} from "~modules/bulletin/ackform/ackform.component";
 @Component({
   selector: 'app-bulletin',
   templateUrl: './bulletin.component.html',
@@ -22,11 +25,12 @@ import {FormsComponent} from "~modules/bulletin/forms/forms.component";
   providers:[BulletinService]
 })
 export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
-  public displayedColumns = [ '_dept_created_by', '_dept_message', '_dept_assigned_to',  '_ack_by', '_seq_dept_message_id','_job_desc','_target_date'];
+  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to',  '_dept_created_by', '_target_date','_ack_by','_ack_comments','_original_fileName','_seq_dept_mess_id'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();
   public pageEvent: PageEvent;
+  download$: Observable<Download>
   public resultsLength = 0;
   public page = 1;
   public isLoading = false;
@@ -45,7 +49,7 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
   filteredOptions: Observable<string[]>;
   ngAfterViewInit(): void {
     // ANTES QUE LA VISTA CARGUE INICIA LA CARGA DE DATOS EN EL GRID
-    // this.getData();
+    this.getData();
   }
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -105,7 +109,11 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
   delete(deptMessResponse: deptMessResponse): void {
   }
 
+
   edit(deptMessResponse: deptMessResponse): void {
+    console.log(deptMessResponse._original_fileName);
+    console.log(deptMessResponse._seq_dept_mess_id);
+     this.download$ =  this.bulletinService.openFile(deptMessResponse);
   }
 
   getData(): void {
@@ -154,5 +162,17 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
 
   }
 
+  ack(deptMessResponse: deptMessResponse): void {
+    this.bulletinService.getOneData(deptMessResponse._seq_dept_mess_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(AckformComponent, {
+          width: '75%',
+          data: { title: 'Update Acknowledgement', action: 'edit', data: data.data }
+        });
+
+
+      }
+    });
+  }
 
 }

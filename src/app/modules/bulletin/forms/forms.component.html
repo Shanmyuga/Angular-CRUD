@@ -44,8 +44,15 @@
       <mat-hint align="end">{{frm.controls.message.value?.length || 0}}/20</mat-hint>
 
     </mat-form-field>
+
+
     <br />
 
+
+      <mat-form-field>
+        <ngx-mat-file-input formControlName="attachments" placeholder="Basic Input" (change)="upload($event)" ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+      </mat-form-field>
 
 
 

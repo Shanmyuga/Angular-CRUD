@@ -57,7 +57,7 @@
 
         <ng-container matColumnDef="_dept_created_by">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Message Created By</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row._dept_created_by }}</mat-cell>
+          <mat-cell *matCellDef="let row">{{ row._message_created_by }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="_dept_message">
@@ -78,9 +78,16 @@
           <mat-header-cell *matHeaderCellDef>Ack By</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._ack_by }}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="_ack_comments">
+          <mat-header-cell *matHeaderCellDef>Ack Comments</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._ack_comments }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="_original_fileName">
+          <mat-header-cell *matHeaderCellDef>AttachMent File</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._original_fileName }}</mat-cell>
+        </ng-container>
         <!-- Table actions -->
-        <ng-container matColumnDef="_seq_dept_message_id">
+        <ng-container matColumnDef="_seq_dept_mess_id">
           <mat-header-cell *matHeaderCellDef>
             Actions
           </mat-header-cell>
@@ -94,14 +101,13 @@
               <!-- <button mat-menu-item (click)="edit(row)">
                  <mat-icon aria-label="Edit">create</mat-icon> Edit
                </button>-->
-              <button mat-menu-item *ngIf="row._epic_status == 'IN_SPRINT' && role == true">
-                <mat-icon aria-label="Delete">edit</mat-icon> Return to BackLog
+
+              <button mat-menu-item (click)="edit(row)" >
+                <mat-icon aria-label="Edit">create</mat-icon> View Attachment
               </button>
-              <button mat-menu-item  *ngIf="row._epic_status == 'IN_SPRINT' && role == true">
-                <mat-icon aria-label="Delete">edit</mat-icon> Close Story
-              </button>
-              <button mat-menu-item >
-                <mat-icon aria-label="Edit">create</mat-icon> Update Story Progress
+
+              <button mat-menu-item (click)="ack(row)" >
+                <mat-icon aria-label="Edit">create</mat-icon> Acknowledge Message
               </button>
             </mat-menu>
           </mat-cell>
@@ -110,7 +116,10 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-
+      <mat-progress-bar *ngIf="download$ | async as download"
+                        [mode]="download.state == 'PENDING' ? 'buffer' : 'determinate'"
+                        [value]="download.progress">
+      </mat-progress-bar>
       <!-- Table pagination -->
       <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="totalItems" [pageSize]="pageSize"
                      (page)="onPaginateChange($event)">

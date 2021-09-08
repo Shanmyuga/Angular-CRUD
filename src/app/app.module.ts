@@ -36,7 +36,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import {BacklogService} from "~services/backlog.service";
 import {SprintService} from "~services/sprint.service";
 import {BulletinService} from "~services/bulletin.service";
-
+import { SAVER, getSaver } from '~services/saver.provider'
 
 @NgModule({
   declarations: [ /*DECLARACIÓN DE COMPONENTES*/
@@ -69,7 +69,8 @@ import {BulletinService} from "~services/bulletin.service";
     EpicService,
     BacklogService,
     SprintService,
-    BulletinService
+    BulletinService,
+    {provide: SAVER, useFactory: getSaver}
   ],
   entryComponents: [ /*AQUI SE AGREGAN LOS MAT-CONFIRM Y LOS MAT-SNACKBAR DE ANGULAR MATERIAL*/
     ConfirmComponent,

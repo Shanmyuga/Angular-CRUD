@@ -37,19 +37,19 @@ export const CONSTANST = {
 
       },
       deptMessage: {
-        list: HOST + '/api/deptMessage/all',
-        delete: HOST + '/api/deptMessage/delete/:id',
-        save: HOST + '/api/deptMessage/save',
-
-        get: HOST + '/api/deptMessage/find/:id',
-
+        list: HOST + '/api/bulletin/all',
+        delete: HOST + '/api/bulletin/delete/:id',
+        save: HOST + '/api/bulletin/save',
+        loadMessage: HOST + '/api/bulletin/load/:id',
+        get: HOST + '/api/bulletin/find/:id',
+        open: HOST + '/api/bulletin/open/:id',
 
       },
       bulletin: {
         list: HOST + '/api/bulletin/all',
         delete: HOST + '/api/bulletin/delete/:id',
         save: HOST + '/api/bulletin/save',
-
+        edit: HOST + '/api/bulletin/edit',
         get: HOST + '/api/bulletin/find/:id',
 
 

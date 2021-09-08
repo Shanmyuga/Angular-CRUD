@@ -5,6 +5,7 @@ export interface deptmessage {
   target_date: string;
 
   message: string;
-
+  ack_message: string;
+  seq_dept_mess_id: string;
 
 }

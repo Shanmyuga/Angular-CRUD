@@ -34,6 +34,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+
 
 @NgModule({
     imports: [
@@ -70,7 +72,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-      CdkTableModule
+      CdkTableModule,
+      MaterialFileInputModule
     ],
     exports: [
         MatAutocompleteModule,
@@ -106,7 +109,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-      CdkTableModule
+      CdkTableModule,
+      MaterialFileInputModule
     ]
 })
 export class MaterialComponentsModule { }
