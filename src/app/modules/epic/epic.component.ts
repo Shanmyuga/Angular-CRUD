@@ -72,7 +72,12 @@ export class EpicComponent implements AfterViewInit, OnInit, Controller {
       console.log(data);
       if(data.success) {
         console.log("inside success");
-        this.role = true;
+        if(data.data === 0) {
+          this.role = false;
+        }
+        else {
+          this.role = true;
+        }
         this.ngOnInit();
       }
     });

@@ -58,8 +58,8 @@ export class FormsComponent implements OnInit {
     console.log(IS_EDITING);
     console.log(data);
     this.frm = this.fb.group({
-      user_story_desc: new FormControl(IS_EDITING ? data[0]._user_story_task : null, [Validators.minLength(3)]),
-      user_story_id: new FormControl(IS_EDITING ? data[0]._user_story_id : null, [Validators.minLength(3)]),
+      user_story_desc: new FormControl(IS_EDITING ? data[0]._user_story_task : null, [Validators.minLength(1)]),
+      user_story_id: new FormControl(IS_EDITING ? data[0]._user_story_id : null, [Validators.minLength(1)]),
       dept_id: new FormControl(IS_EDITING ? data[0]._dept_id : null, [Validators.required, Validators.minLength(2)]),
 
       epic_desc: new FormControl(IS_EDITING ? data[0]._epic_desc : null, [Validators.required, Validators.minLength(2)]),

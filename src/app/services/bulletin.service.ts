@@ -32,13 +32,13 @@ export class BulletinService  implements BulletinProvider {
     );
   }
 
-  getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string): Observable<Response> {
+  getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string,searchByAckStatus: string): Observable<Response> {
     let params = new HttpParams();
     params = params.append('active', sortActive);
     params = params.append('order', order);
     params = params.append('searchByDept', searchByDept);
 
-
+    params = params.append('searchByAckStatus', searchByAckStatus);
     params = params.append('pageSize', pageSize.toString());
     params = params.append('page', page.toString());
 

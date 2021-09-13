@@ -18,11 +18,25 @@
 
 
           <mat-label>  Messages assigned to Dept </mat-label>
-          <mat-select [(ngModel)]="searchByDept"   >
+          <mat-select [(ngModel)]="searchByDept"   (selectionChange)="doLoadSprints($event)">
 
             <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
               {{dept._label}}</mat-option>
 
+          </mat-select>
+
+
+        </mat-form-field>
+
+        <mat-form-field class="filter-field">
+
+
+          <mat-label>  Acknowledged Ones </mat-label>
+          <mat-select [(ngModel)]="searchByAckStatus"   (selectionChange)="doLoadSprints($event)">
+
+          <mat-option value="Y">Yes</mat-option>
+            <mat-option value="N">No</mat-option>
+            <mat-option value="">All</mat-option>
           </mat-select>
 
 

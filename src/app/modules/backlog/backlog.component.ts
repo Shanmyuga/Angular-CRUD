@@ -40,8 +40,23 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
   public searchByDesc = '';
   public searchByWork = '';
   public searchByWorkDesc = '';
+  public role= false;
   ngAfterViewInit(): void {
     // ANTES QUE LA VISTA CARGUE INICIA LA CARGA DE DATOS EN EL GRID
+
+    this.authService.checkPMRole().subscribe((data: any) => {
+      console.log(data);
+      if(data.success) {
+        console.log("inside success");
+        if(data.data === 0) {
+          this.role = false;
+        }
+        else {
+          this.role = true;
+        }
+        this.ngOnInit();
+      }
+    });
     this.getData();
     }
 
@@ -68,6 +83,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
 
 
   }
+
 
 
 

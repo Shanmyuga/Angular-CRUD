@@ -6,7 +6,7 @@ export abstract class BulletinProvider {
 
   protected constructor() { }
 
-  abstract getList(sortActive: string, order: string, pageSize: number, page: number, searchbyDept: string): Observable<Response>;
+  abstract getList(sortActive: string, order: string, pageSize: number, page: number, searchbyDept: string,searchByAckStatus: string): Observable<Response>;
 
   abstract getOne(id: string): Observable<Response>;
 

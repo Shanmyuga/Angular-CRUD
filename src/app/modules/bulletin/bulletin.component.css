@@ -56,6 +56,16 @@
   padding-top: 3vh !important;
 }
 
+
+mat-cell{
+
+  font-family:Verdana,sans-serif;
+  font-size:11px;
+  color: #1a084c;
+}
+
+
+
 .button-row, .mat-column-personid {
   display: flex;
   justify-content: center;
