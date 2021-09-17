@@ -154,7 +154,7 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
       width: '250px',
       data: {
         title: 'Update record',
-        message: 'Are you sure you want to return the story to BackLog this record ?'
+        message: 'Are you sure you want to close the story  this record ?'
       }
     });
 
