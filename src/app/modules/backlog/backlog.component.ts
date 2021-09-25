@@ -13,7 +13,7 @@ import {backlogResponse} from "~models/backlogResponse";
 import {merge, of as observableOf} from "rxjs";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
 import { FormsComponent } from '~modules/backlog/forms/forms.component';
-
+import {EpicService} from "~services/epic.service";
 import {BackLogProvider} from "~base/backlogprovider";
 import {SnackbarComponent} from "~components/snackbar/snackbar.component";
 import {CustomepicComponent} from "~modules/epic/customepic/customepic.component";
@@ -40,6 +40,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
   public searchByDesc = '';
   public searchByWork = '';
   public searchByWorkDesc = '';
+  public departments: any[];
   public role= false;
   ngAfterViewInit(): void {
     // ANTES QUE LA VISTA CARGUE INICIA LA CARGA DE DATOS EN EL GRID
@@ -66,6 +67,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
     private changeDetectorRef: ChangeDetectorRef,
     private backLogService: BacklogService,
     private authService: AuthService,
+    private epicService: EpicService,
     private router: Router,
     public dialog: MatDialog,
     public snack: MatSnackBar
@@ -80,7 +82,11 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
     }
 
 
-
+    this.epicService.getDepts().subscribe((data: any) => {
+      if(data.success) {
+        this.departments = data.data;
+      }
+    });
 
   }
 

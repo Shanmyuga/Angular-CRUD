@@ -153,12 +153,12 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
     const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '250px',
       data: {
-        title: 'Update record',
-        message: 'Are you sure you want to close the story  this record ?'
+        title: 'Update record ?'
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      message: 'Are you sure you want to close the story'
       if (result) {
         this.sprintService.closeStory(sprintResponse).subscribe((data: any) => {
           this.openSnack(data);

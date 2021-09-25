@@ -15,12 +15,12 @@
       <div class="table-header">
         <!-- Table search input -->
         <mat-form-field class="filter-field">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by dept_id"
-                 [(ngModel)]="searchByDept">
-          <button mat-button *ngIf="searchByDept" matSuffix mat-icon-button aria-label="Clear"
-                  (click)="searchByDept=''; applyFilter('')">
-            <mat-icon>close</mat-icon>
-          </button>
+          <mat-select [(ngModel)]="searchByDept"   (selectionChange)="applyFilter('')">
+
+            <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
+              {{dept._label}}</mat-option>
+
+          </mat-select>
         </mat-form-field>
         <br/>
         <mat-form-field class="filter-field">
@@ -42,6 +42,8 @@
         </mat-form-field>
 
         <mat-form-field class="filter-field">
+
+
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by Job Desc"
                  [(ngModel)]="searchByWorkDesc">
           <button mat-button *ngIf="searchByWorkDesc" matSuffix mat-icon-button aria-label="Clear"
