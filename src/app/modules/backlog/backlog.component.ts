@@ -40,6 +40,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
   public searchByDesc = '';
   public searchByWork = '';
   public searchByWorkDesc = '';
+  public searchByStatus = '';
   public departments: any[];
   public role= false;
   ngAfterViewInit(): void {
@@ -159,6 +160,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
             this.searchByDesc,
             this.searchByWork,
             this.searchByWorkDesc,
+            this.searchByStatus,
           );
         }),
         map(data => {

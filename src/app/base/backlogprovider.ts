@@ -7,7 +7,7 @@ export abstract class BackLogProvider {
 
   constructor() { }
 
-  abstract getList(sortActive: string, order: string, pageSize: number, page: number, searchbyDept: string,searchByDesc: string ,searchByWork: string,searchByWorkDesc: string ): Observable<Response>;
+  abstract getList(sortActive: string, order: string, pageSize: number, page: number, searchbyDept: string,searchByDesc: string ,searchByWork: string,searchByWorkDesc: string,searchByStatus: string ): Observable<Response>;
 
   abstract getOne(id: string): Observable<Response>;
 

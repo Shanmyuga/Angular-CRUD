@@ -15,11 +15,21 @@
       <div class="table-header">
         <!-- Table search input -->
         <mat-form-field class="filter-field">
+          <mat-label>Dept</mat-label>
           <mat-select [(ngModel)]="searchByDept"   (selectionChange)="applyFilter('')">
 
             <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
               {{dept._label}}</mat-option>
 
+          </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="filter-field">
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="searchByStatus"   (selectionChange)="applyFilter('')" required>
+<mat-option value="BKLOG" >BKLOG</mat-option>
+            <mat-option value="COMPLETE">COMPLETE</mat-option>
+            <mat-option value="IN_SPRINT">IN_SPRINT</mat-option>
           </mat-select>
         </mat-form-field>
         <br/>
