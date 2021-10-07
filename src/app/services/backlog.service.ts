@@ -30,7 +30,7 @@ export class BacklogService implements  BackLogProvider{
 
   getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string,searchByDesc: string,searchByWork: string,searchByWorkDesc: string,searchByStatus: string): Observable<Response> {
     let params = new HttpParams();
-    params = params.append('active', sortActive);
+    params = params.append('active', sortActive.substring(1,sortActive.length));
     params = params.append('order', order);
     params = params.append('searchByDept', searchByDept);
     params = params.append('searchByDesc', searchByDesc);

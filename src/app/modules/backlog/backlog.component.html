@@ -71,7 +71,7 @@
         </button>-->
       </div>
 
-      <mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="id" matSortDisableClear
+      <mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="_dept_id" matSortDisableClear
                  matSortDirection="desc">
         <!-- Table content -->
 
@@ -107,6 +107,10 @@
         <ng-container matColumnDef="_epic_status">
           <mat-header-cell *matHeaderCellDef>epic_status</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._epic_status }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="_sprint_count">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>sprint_count</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._sprint_count }}</mat-cell>
         </ng-container>
         <!-- Table actions -->
         <ng-container matColumnDef="_seq_backlog_id">
