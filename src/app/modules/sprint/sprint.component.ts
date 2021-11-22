@@ -129,7 +129,7 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
   }
 
   updateBackLog(sprintResponse: sprintResponse): void {
-    const dialogRef = this.dialog.open(ConfirmComponent, {
+  /*  const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '250px',
       data: {
         title: 'Update record',
@@ -146,28 +146,48 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
           }
         });
       }
-    });
-  }
+    });*/
 
-  closeStory(sprintResponse: sprintResponse): void {
-    const dialogRef = this.dialog.open(ConfirmComponent, {
-      width: '250px',
-      data: {
-        title: 'Update record ?'
-      }
-    });
+    this.sprintService.getOneData(sprintResponse._seq_sprint_job_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(FormsComponent, {
+          width: '75%',
+          data: { title: 'Return to Backlog', action: 'bklog', data: data.data }
+        });
 
-    dialogRef.afterClosed().subscribe(result => {
-      message: 'Are you sure you want to close the story'
-      if (result) {
-        this.sprintService.closeStory(sprintResponse).subscribe((data: any) => {
-          this.openSnack(data);
-          if (data.success) {
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
             this.paginator._changePageSize(this.paginator.pageSize);
           }
         });
       }
     });
+  }
+
+  closeStory(sprintResponse: sprintResponse): void {
+   /* const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '250px',
+      data: {
+        title: 'Update record ?'
+      }*/
+
+    this.sprintService.getOneData(sprintResponse._seq_sprint_job_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(FormsComponent, {
+          width: '75%',
+          data: { title: 'Close Sprint Story', action: 'close', data: data.data }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+        });
+      }
+    });
+
+
+
   }
   edit(sprintResponse: sprintResponse): void {
 

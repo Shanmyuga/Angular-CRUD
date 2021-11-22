@@ -16,7 +16,7 @@ export class FormsComponent implements OnInit {
 
   public sprints: any[];
   public users: any[];
-
+public action : any;
   public standardEpics: any[];
   options:  string[] = new Array();
   standardEpicLabels:  string[] = new Array();
@@ -40,6 +40,8 @@ export class FormsComponent implements OnInit {
     this.sprintService.getUsers().subscribe((data: any) => {
       if(data.success) {
         this.users = data.data;
+
+        this.action = this.data.action;
       }
     });
   }
@@ -53,7 +55,8 @@ export class FormsComponent implements OnInit {
 
   private initializeForm() {
     console.log("initialize called");
-    const IS_EDITING = this.data.action === 'edit';
+    const IS_EDITING = true;
+
     const data = this.data.data;
     console.log(IS_EDITING);
     console.log(data);
@@ -73,7 +76,7 @@ export class FormsComponent implements OnInit {
   }
 
   public save(form: FormGroup) {
-    this.sprintService.save(form.value).subscribe((data: any) => {
+    this.sprintService.updateWithComments(form.value,this.action).subscribe((data: any) => {
       this.openSnack(data);
 
       if (data.success) {

@@ -4,7 +4,7 @@ import { CONSTANST } from '~utils/constanst';
 import { epic } from '~app/models/epicstory';
 import { Response } from '~app/models/response';
 
-import { EpicProvider } from '../base/Epicprovider';
+import { EpicProvider } from '../base/epicprovider';
 import { Observable } from 'rxjs';
 
 

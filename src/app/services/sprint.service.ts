@@ -99,6 +99,20 @@ export class SprintService implements SprintProvider{
       { headers: this.headers }
     );
   }
+
+  updateWithComments(sprint: sprint,action : string): Observable<Response> {
+    return this.http.post<Response>(
+      CONSTANST.routes.sprint.save,
+      {
+        seq_sprint_job_id:sprint.seq_sprint_job_id,
+        seq_backlog_id:sprint.seq_backlog_id,
+        comments: sprint.comments,
+        assigned_to: sprint.assigned_to,
+        action: action
+      },
+      { headers: this.headers }
+    );
+  }
   getDepts() {
     return this.http.get<Response>(CONSTANST.routes.epic.dept,{ headers: this.headers });
   }

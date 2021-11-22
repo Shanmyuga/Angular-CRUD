@@ -53,7 +53,7 @@
       <mat-hint align="end">{{frm.controls.comments.value?.length || 0}}/250</mat-hint>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field *ngIf="action ==='edit'">
       <mat-label> Assigned To</mat-label>
       <mat-select formControlName="assigned_to"  >
 
