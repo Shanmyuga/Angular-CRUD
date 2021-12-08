@@ -120,7 +120,7 @@
                 <mat-icon aria-label="Edit">create</mat-icon> View Attachment
               </button>
 
-              <button mat-menu-item (click)="ack(row)" >
+              <button mat-menu-item (click)="ack(row)" *ngIf="row._ack_by?.length <= 0" >
                 <mat-icon aria-label="Edit">create</mat-icon> Acknowledge Message
               </button>
             </mat-menu>

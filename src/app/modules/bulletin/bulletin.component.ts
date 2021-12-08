@@ -166,7 +166,9 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
     });
 
   }
-
+  isEmptyObject(obj) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
   ack(deptMessResponse: deptMessResponse): void {
     this.bulletinService.getOneData(deptMessResponse._seq_dept_mess_id).subscribe((data: any) => {
       if (data.success) {
