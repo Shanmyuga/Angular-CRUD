@@ -41,16 +41,35 @@
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
-        <br/>
+<br/>
         <mat-form-field class="filter-field">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by, Stage "
+                 [(ngModel)]="searchByStageDesc">
+          <button mat-button *ngIf="searchByDesc" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="searchByStageDesc=''; applyFilter('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <br/>
+      <!--  <mat-form-field class="filter-field">
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by seq_work_id"
                  [(ngModel)]="searchByWork">
           <button mat-button *ngIf="searchByWork" matSuffix mat-icon-button aria-label="Clear"
                   (click)="searchByWork=''; applyFilter('')">
             <mat-icon>close</mat-icon>
           </button>
-        </mat-form-field>
+        </mat-form-field>-->
+        <mat-form-field class="filter-field">
 
+
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by Task Desc"
+                 [(ngModel)]="searchByTaskDesc">
+          <button mat-button *ngIf="searchByTaskDesc" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="searchByTaskDesc=''; applyFilter('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <br/>
         <mat-form-field class="filter-field">
 
 
@@ -85,7 +104,10 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>Epic Desc</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._epic_desc }}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="_stage_desc">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Stage Desc</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._stage_desc }}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="_user_story_id">
           <mat-header-cell *matHeaderCellDef mat-sort-header>User story id</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._user_story_id }}</mat-cell>
@@ -133,6 +155,11 @@
               <button mat-menu-item (click)="addToSprint(row)" >
                 <mat-icon aria-label="Add to Sprint">create</mat-icon> Add to Sprint
               </button>
+
+              <button mat-menu-item (click)="loadStory(row)" >
+                <mat-icon aria-label="Add to Sprint">create</mat-icon> View History
+              </button>
+
             </mat-menu>
           </mat-cell>
         </ng-container>

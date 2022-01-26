@@ -63,6 +63,7 @@ export const CONSTANST = {
         closeStory : HOST + '/api/sprint/closeStory',
         saveSprint: HOST + '/api/sprint/saveSprint',
         get: HOST + '/api/sprint/find/:id',
+        getComments: HOST + '/api/sprint/story/comments/:id',
         deptSprint: HOST + '/api/sprint/dept/sprint',
         sprintData: HOST + '/api/sprint/name/all',
         users:  HOST + '/api/sprint/users/all'

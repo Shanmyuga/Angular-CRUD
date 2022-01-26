@@ -14,10 +14,13 @@ import {merge, of as observableOf} from "rxjs";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
 import { FormsComponent } from '~modules/backlog/forms/forms.component';
 import {EpicService} from "~services/epic.service";
+import {SprintService} from "~services/sprint.service";
 import {BackLogProvider} from "~base/backlogprovider";
 import {SnackbarComponent} from "~components/snackbar/snackbar.component";
 import {CustomepicComponent} from "~modules/epic/customepic/customepic.component";
 import {ConfirmComponent} from "~components/confirm/confirm.component";
+import {StorycommentsComponent} from "~modules/sprint/storycomments/storycomments.component";
+import {StoryhistoryComponent} from "~modules/backlog/storyhistory/storyhistory.component";
 
 @Component({
   selector: 'app-backlog',
@@ -26,7 +29,7 @@ import {ConfirmComponent} from "~components/confirm/confirm.component";
   providers: [BacklogService]
 })
 export class BacklogComponent implements AfterViewInit, OnInit, BackLogController {
-  public displayedColumns = ['_dept_id', '_epic_desc', '_user_story_id', '_user_story_task','_job_desc','_seq_work_id','_epic_status','_sprint_count','_seq_backlog_id'];
+  public displayedColumns = ['_dept_id', '_epic_desc','_stage_desc', '_user_story_id', '_user_story_task','_job_desc','_seq_work_id','_epic_status','_sprint_count','_seq_backlog_id'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();
@@ -40,6 +43,8 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
   public searchByDesc = '';
   public searchByWork = '';
   public searchByWorkDesc = '';
+  public searchByTaskDesc = '';
+  public searchByStageDesc = '';
   public searchByStatus = '';
   public departments: any[];
   public role= false;
@@ -69,6 +74,7 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
     private backLogService: BacklogService,
     private authService: AuthService,
     private epicService: EpicService,
+    private sprintService: SprintService,
     private router: Router,
     public dialog: MatDialog,
     public snack: MatSnackBar
@@ -161,6 +167,8 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
             this.searchByWork,
             this.searchByWorkDesc,
             this.searchByStatus,
+            this.searchByStageDesc,
+            this.searchByTaskDesc,
           );
         }),
         map(data => {
@@ -187,6 +195,24 @@ export class BacklogComponent implements AfterViewInit, OnInit, BackLogControlle
         const dialogRef = this.dialog.open(FormsComponent, {
           width: '75%',
           data: { title: 'Add to Sprint', action: 'edit', data: data.data }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+        });
+      }
+    });
+  }
+
+  loadStory(backlogResponse: backlogResponse): void {
+    console.log(backlogResponse);
+    this.sprintService.getCommentsForBackLog(backlogResponse._seq_backlog_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(StoryhistoryComponent, {
+          width: '75%',
+          data: { title: 'View Story Comments History', action: 'edit', data: data.data }
         });
 
         dialogRef.afterClosed().subscribe(result => {

@@ -4,7 +4,10 @@ import { FormsComponent } from './forms/forms.component';
 import { SelectCheckAllComponent } from './select-check-all/select-check-all.component';
 import {RouterModule} from "@angular/router";
 import {BacklogComponent} from "../backlog/backlog.component";
+
 import {SharedModule} from "../../utils/shared.module";
+import {StoryhistoryComponent} from "~modules/backlog/storyhistory/storyhistory.component";
+
 
 
 
@@ -16,7 +19,9 @@ import {SharedModule} from "../../utils/shared.module";
   declarations: [
     BacklogComponent,
     FormsComponent,
-    SelectCheckAllComponent
+    SelectCheckAllComponent,
+    StoryhistoryComponent,
+
 
   ],
   providers: [],

@@ -17,7 +17,7 @@ import {BulletinModule} from "~modules/bulletin/bulletin.module";
     EpicModule,
     BacklogModule,
     SprintModule,
-    BulletinModule
+    BulletinModule,
   ],
   declarations: [
     AdminLayoutComponent

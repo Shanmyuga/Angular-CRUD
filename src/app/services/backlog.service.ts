@@ -28,7 +28,7 @@ export class BacklogService implements  BackLogProvider{
     );
   }
 
-  getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string,searchByDesc: string,searchByWork: string,searchByWorkDesc: string,searchByStatus: string): Observable<Response> {
+  getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string,searchByDesc: string,searchByWork: string,searchByWorkDesc: string,searchByStatus: string,searchByStageDesc: string,searchByTaskDesc: string): Observable<Response> {
     let params = new HttpParams();
     params = params.append('active', sortActive.substring(1,sortActive.length));
     params = params.append('order', order);
@@ -37,6 +37,8 @@ export class BacklogService implements  BackLogProvider{
     params = params.append('searchByWorkDesc', searchByWorkDesc);
     params = params.append('searchByWork', searchByWork);
     params = params.append('searchByStatus', searchByStatus);
+    params = params.append('searchByStageDesc', searchByStageDesc);
+    params = params.append('searchByTaskDesc', searchByTaskDesc);
     params = params.append('pageSize', pageSize.toString());
     params = params.append('page', page.toString());
 

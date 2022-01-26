@@ -18,6 +18,7 @@ import {FormsComponent} from "~modules/bulletin/forms/forms.component";
 import {Download} from "~services/download";
 import {CustomepicComponent} from "~modules/epic/customepic/customepic.component";
 import {AckformComponent} from "~modules/bulletin/ackform/ackform.component";
+import {AckCommentsComponent} from "~modules/bulletin/ackcomments/ackcomments.component";
 @Component({
   selector: 'app-bulletin',
   templateUrl: './bulletin.component.html',
@@ -25,7 +26,7 @@ import {AckformComponent} from "~modules/bulletin/ackform/ackform.component";
   providers:[BulletinService]
 })
 export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
-  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to',  '_dept_created_by', '_target_date','_ack_by','_ack_comments','_original_fileName','_seq_dept_mess_id'];
+  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to',  '_dept_created_by','_dept_created_date', '_target_date','_ack_by','_ack_comments','_original_fileName','_seq_dept_mess_id'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();
@@ -182,4 +183,30 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
     });
   }
 
+  viewMessage(deptMessResponse: deptMessResponse): void {
+    this.bulletinService.getOneData(deptMessResponse._seq_dept_mess_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(AckCommentsComponent, {
+          width: '75%',
+          data: { title: 'View Message', action: 'viewMessage', data: data.data }
+        });
+
+
+      }
+    });
+  }
+
+
+  viewAck(deptMessResponse: deptMessResponse): void {
+    this.bulletinService.getOneData(deptMessResponse._seq_dept_mess_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(AckCommentsComponent, {
+          width: '75%',
+          data: { title: 'View AckMessage', action: 'viewAck', data: data.data }
+        });
+
+
+      }
+    });
+  }
 }

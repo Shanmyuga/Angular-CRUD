@@ -87,6 +87,19 @@ export class SprintService implements SprintProvider{
     );
   }
 
+  getComments(id: number): Observable<Response> {
+    return this.http.get<Response>(
+      CONSTANST.routes.sprint.getComments.replace(':id', String(id)),
+      { headers: this.headers }
+    );
+  }
+  getCommentsForBackLog(id: string): Observable<Response> {
+    return this.http.get<Response>(
+      CONSTANST.routes.sprint.getComments.replace(':id', id),
+      { headers: this.headers }
+    );
+  }
+
   save(sprint: sprint): Observable<Response> {
     return this.http.post<Response>(
       CONSTANST.routes.sprint.save,

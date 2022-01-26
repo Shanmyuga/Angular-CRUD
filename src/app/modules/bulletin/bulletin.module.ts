@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {BulletinComponent} from "../bulletin/bulletin.component";
 import {SharedModule} from "../../utils/shared.module";
 import { AckformComponent } from './ackform/ackform.component';
+import { AckCommentsComponent } from './ackcomments/ackcomments.component';
 
 
 
@@ -15,9 +16,8 @@ import { AckformComponent } from './ackform/ackform.component';
   declarations: [
     BulletinComponent,
     FormsComponent,
-    AckformComponent
-
-
+    AckformComponent,
+    AckCommentsComponent,
   ],
   providers: [],
   entryComponents: [

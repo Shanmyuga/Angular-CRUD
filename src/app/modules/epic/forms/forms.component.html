@@ -36,9 +36,7 @@
     <mat-form-field>
       <mat-label>Standard Epics for Dept</mat-label>
       <mat-select formControlName="standard_epic_id"  multiple >
-        <app-select-check-all [model]="frm.get('standard_epic_id')"
-                              [values]="standardEpicLabels">
-        </app-select-check-all>
+        <mat-option #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
         <mat-option *ngFor="let epic of standardEpics"  value={{epic._value}}>
           {{epic._label}}</mat-option>
       </mat-select>

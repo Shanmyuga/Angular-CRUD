@@ -73,7 +73,10 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>Message Created By</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._message_created_by }}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="_dept_created_date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Message Created Date</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._message_created_date }}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="_dept_message">
           <mat-header-cell *matHeaderCellDef> Message</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._dept_message }}</mat-cell>
@@ -115,7 +118,12 @@
               <!-- <button mat-menu-item (click)="edit(row)">
                  <mat-icon aria-label="Edit">create</mat-icon> Edit
                </button>-->
-
+              <button mat-menu-item (click)="viewMessage(row)" >
+                <mat-icon aria-label="Add to Sprint">create</mat-icon> View  Message
+              </button>
+              <button mat-menu-item (click)="viewAck(row)" >
+                <mat-icon aria-label="Add to Sprint">create</mat-icon> View  AckMessage
+              </button>
               <button mat-menu-item (click)="edit(row)" >
                 <mat-icon aria-label="Edit">create</mat-icon> View Attachment
               </button>

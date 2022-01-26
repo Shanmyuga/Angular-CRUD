@@ -15,6 +15,7 @@ import {FormsComponent} from "~modules/sprint/forms/forms.component";
 import {Sprintcontroller} from "~base/sprintcontroller";
 import {sprintResponse} from "~models/sprintResponse";
 import {SprintService} from "~services/sprint.service";
+import {StorycommentsComponent} from "~modules/sprint/storycomments/storycomments.component";
 
 @Component({
   selector: 'app-sprint',
@@ -252,6 +253,24 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
         const dialogRef = this.dialog.open(FormsComponent, {
           width: '75%',
           data: { title: 'Update Sprint Story', action: 'edit', data: data.data }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+        });
+      }
+    });
+  }
+
+  loadStory(sprintResponse: sprintResponse): void {
+    console.log(sprintResponse);
+    this.sprintService.getComments(sprintResponse._seq_backlog_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(StorycommentsComponent, {
+          width: '75%',
+          data: { title: 'View Story Comments History', action: 'edit', data: data.data }
         });
 
         dialogRef.afterClosed().subscribe(result => {

@@ -3,6 +3,7 @@ import { FormsComponent } from './forms/forms.component';
 import {RouterModule} from "@angular/router";
 import {SprintComponent} from "../sprint/sprint.component";
 import {SharedModule} from "../../utils/shared.module";
+import { StorycommentsComponent } from './storycomments/storycomments.component';
 
 
 
@@ -13,7 +14,8 @@ import {SharedModule} from "../../utils/shared.module";
   ],
   declarations: [
     SprintComponent,
-    FormsComponent
+    FormsComponent,
+    StorycommentsComponent,
 
 
   ],

@@ -1,0 +1,43 @@
+<h1 mat-dialog-title> {{ data.title }}</h1>
+
+<mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="id" matSortDisableClear
+           matSortDirection="desc">
+  <!-- Table content -->
+
+
+  <ng-container matColumnDef="_user_comments">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>User Comments</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row._user_comments}}</mat-cell>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="_sprint_name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Sprint Name</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row._sprint_name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="_updated_date">
+    <mat-header-cell *matHeaderCellDef> Updated Date</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row._updated_date }}</mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="_updated_by">
+    <mat-header-cell *matHeaderCellDef>Updated By</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row._updated_by }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="_assigned_to">
+    <mat-header-cell *matHeaderCellDef>Assigned To</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row._assigned_to }}</mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Close</button>
+
+</div>

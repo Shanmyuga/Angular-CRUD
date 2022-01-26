@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -6,6 +6,7 @@ import {EpicService} from "~services/epic.service";
 import { SnackbarComponent } from '../../../components/snackbar/snackbar.component';
 import {map, startWith} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {MatOption} from "@angular/material/core";
 
 @Component({
   selector: 'app-forms',
@@ -22,6 +23,7 @@ export class FormsComponent implements OnInit {
    standardEpicLabels:  string[] = new Array();
   epicLabels:  string[] = new Array();
   filteredOptions: Observable<string[]>;
+  @ViewChild('allSelected') private allSelected: MatOption;
   constructor(
     public dialogRef: MatDialogRef<FormsComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -122,4 +124,14 @@ export class FormsComponent implements OnInit {
       }
     });
   }
+
+  toggleAllSelection() {
+  /*  if (this.allSelected.selected) {
+      this.frm.controls.standard_epic_id
+        .patchValue([...this.standardEpics.map(item => item._value0);
+    } else {
+      this.frm.controls.standard_epic_id.patchValue([]);
+    }*/
+  }
+
 }
