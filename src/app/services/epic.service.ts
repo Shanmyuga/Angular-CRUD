@@ -97,6 +97,7 @@ export class EpicService implements  EpicProvider {
         custom_user_story_desc: epic.user_story_desc,
         custom_user_story_id: epic.user_story_id,
         standard_epic_id: epic.epic_id,
+        internal_bklog_ref: epic.internal_bklog_ref,
         workOrder_desc: epic.workOrder_desc
       },
       { headers: this.headers }

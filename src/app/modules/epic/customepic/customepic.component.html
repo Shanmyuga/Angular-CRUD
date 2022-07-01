@@ -36,12 +36,18 @@
     </mat-form-field>
 
     <br />
+    <mat-form-field>
+      <textarea  matInput placeholder="Internal Backlog Reference" formControlName="internal_bklog_ref" class="person-input" ></textarea>
+      <mat-hint align="end">{{frm.controls.internal_bklog_ref.value?.length || 0}}/200</mat-hint>
 
+    </mat-form-field>
+    <br/>
     <mat-form-field>
       <textarea  matInput placeholder=" User Story ID" formControlName="user_story_id" class="person-input" ></textarea>
       <mat-hint align="end">{{frm.controls.user_story_id.value?.length || 0}}/10</mat-hint>
 
     </mat-form-field>
+
 
 
 

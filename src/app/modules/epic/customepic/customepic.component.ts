@@ -77,7 +77,8 @@ export class CustomepicComponent implements OnInit {
     console.log(data);
     this.frm = this.fb.group({
       user_story_desc: new FormControl(IS_EDITING ? data[0]._user_story_task : null, [ Validators.required,Validators.minLength(20)]),
-      user_story_id: new FormControl(IS_EDITING ? data[0]._user_story_id : null, [ Validators.required,Validators.minLength(6)]),
+      internal_bklog_ref: new FormControl(IS_EDITING ? data[0].internal_bklog_ref : null, [ Validators.required,Validators.minLength(5)]),
+      user_story_id: new FormControl(IS_EDITING ? data[0]._user_story_id : null, [ Validators.required,Validators.minLength(3)]),
       dept_id: new FormControl(IS_EDITING ? data[0]._dept_id : null,[Validators.required, Validators.minLength(2)]),
       workOrder_desc: new FormControl(IS_EDITING ? data.workOrder_desc : null,[Validators.required, Validators.minLength(2)]),
       epic_desc: new FormControl(IS_EDITING ? data[0]._epic_desc : null, [ Validators.minLength(2)]),

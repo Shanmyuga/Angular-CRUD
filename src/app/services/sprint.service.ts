@@ -58,13 +58,13 @@ export class SprintService implements SprintProvider{
       { headers: this.headers }
     );
   }
-  getList(sortActive: string, order: string, pageSize: number, page: number, searchByName: string): Observable<Response> {
+  getList(sortActive: string, order: string, pageSize: number, page: number, searchByName: string,searchByWO: string): Observable<Response> {
     let params = new HttpParams();
     params = params.append('active', sortActive);
     params = params.append('order', order);
     params = params.append('searchByName', searchByName);
 
-
+    params = params.append('searchByWO', searchByWO);
     params = params.append('pageSize', pageSize.toString());
     params = params.append('page', page.toString());
 

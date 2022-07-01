@@ -39,6 +39,7 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
   public sprintNames: any[];
   public searchBySprint = '';
   public standardEpics: any[];
+  public searchByWorkDesc = '';
   public deptEpics: any[];
   public role = false;
   options:  string[] = new Array();
@@ -208,7 +209,8 @@ export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller
             this.sort.direction,
             this.pageSize,
             this.page,
-            this.searchBySprint
+            this.searchBySprint,
+            this.searchByWorkDesc
 
           );
         }),

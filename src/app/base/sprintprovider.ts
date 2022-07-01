@@ -6,7 +6,7 @@ export abstract class SprintProvider {
 
   protected constructor() { }
 
-  abstract getList(sortActive: string, order: string, pageSize: number, page: number, searchbyDept: string): Observable<Response>;
+  abstract getList(sortActive: string, order: string, pageSize: number, page: number, searchbyDept: string,searchByWO: string): Observable<Response>;
 
   abstract getOne(id: string): Observable<Response>;
 

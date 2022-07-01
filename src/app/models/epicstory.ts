@@ -3,6 +3,7 @@ export interface epic {
   custom_user_story_desc: string;
   custom_user_story_id: string;
   user_story_desc:string;
+  internal_bklog_ref: string,
   user_story_id: string;
   epic_desc: string;
   epic_dept: string;
