@@ -103,6 +103,10 @@
           <mat-header-cell *matHeaderCellDef>Comments</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._comments }}</mat-cell>
         </ng-container>
+        <ng-container matColumnDef="_reference_comments">
+          <mat-header-cell *matHeaderCellDef>Reference Epics</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._reference_comments }}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="_assigned_to">
           <mat-header-cell *matHeaderCellDef>Assigned_to</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._assigned_to }}</mat-cell>

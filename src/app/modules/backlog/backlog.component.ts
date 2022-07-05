@@ -29,7 +29,7 @@ import {StoryhistoryComponent} from "~modules/backlog/storyhistory/storyhistory.
   providers: [BacklogService]
 })
 export class BacklogComponent implements AfterViewInit, OnInit, BackLogController {
-  public displayedColumns = ['_dept_id', '_epic_desc','_stage_desc', '_user_story_id', '_user_story_task','_job_desc','_seq_work_id','_epic_status','_reference_epics','_sprint_count','_seq_backlog_id'];
+  public displayedColumns = ['_dept_id', '_epic_desc','_stage_desc', '_user_story_id', '_user_story_task','_job_desc','_seq_work_id','_epic_status','_reference_epics','_seq_st_epic_id','_sprint_count','_seq_backlog_id'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();

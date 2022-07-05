@@ -121,6 +121,7 @@ export class SprintService implements SprintProvider{
         seq_backlog_id:sprint.seq_backlog_id,
         comments: sprint.comments,
         assigned_to: sprint.assigned_to,
+        reference_comments: sprint.reference_comments,
         action: action
       },
       { headers: this.headers }

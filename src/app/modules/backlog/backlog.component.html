@@ -135,6 +135,10 @@
           <mat-header-cell *matHeaderCellDef>Reference Epics</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._reference_epics }}</mat-cell>
         </ng-container>
+        <ng-container matColumnDef="_seq_st_epic_id">
+          <mat-header-cell *matHeaderCellDef>Internal Reference ID</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row._seq_st_epic_id }}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="_sprint_count">
           <mat-header-cell *matHeaderCellDef mat-sort-header>sprint_count</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row._sprint_count }}</mat-cell>

@@ -71,6 +71,7 @@ public action : any;
       job_desc: new FormControl(IS_EDITING ? data[0]._job_desc : null),
       epic_id: new FormControl(IS_EDITING ? data[0]._epic_id : null),
       comments: new FormControl(IS_EDITING ? data[0]._comments : null),
+      reference_comments: new FormControl(IS_EDITING ? data[0]._reference_comments : null),
       assigned_to: new FormControl(IS_EDITING ? data[0]._assigned_to : null)
     });
   }

@@ -8,6 +8,7 @@ export interface sprint {
   sprint_name: string;
   job_desc: string;
   epic_status: string;
+  reference_comments: string;
   comments: string;
   assigned_to: string;
 }

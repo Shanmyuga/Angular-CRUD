@@ -24,7 +24,7 @@ import {StorycommentsComponent} from "~modules/sprint/storycomments/storycomment
   providers:[SprintService]
 })
 export class SprintComponent  implements AfterViewInit, OnInit, Sprintcontroller {
-  public displayedColumns = ['_dept_id', '_epic_desc', '_user_story_id', '_user_story_task', '_job_desc', '_seq_work_id', '_epic_status','_assigned_to','_comments', '_seq_sprint_job_id'];
+  public displayedColumns = ['_dept_id', '_epic_desc', '_user_story_id', '_user_story_task', '_job_desc', '_seq_work_id', '_epic_status','_assigned_to','_comments', '_seq_sprint_job_id','_reference_comments'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();
