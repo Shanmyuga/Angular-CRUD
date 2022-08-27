@@ -26,7 +26,7 @@ import {AckCommentsComponent} from "~modules/bulletin/ackcomments/ackcomments.co
   providers:[BulletinService]
 })
 export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
-  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to',  '_dept_created_by','_dept_created_date', '_target_date','_ack_by','_ack_comments','_original_fileName','_seq_dept_mess_id'];
+  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to', '_dept_assigned_from', '_dept_created_by','_dept_created_date', '_target_date','_ack_by','_ack_comments',,'_seq_dept_mess_id'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();
@@ -159,7 +159,7 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
   save(): void {
     const dialogRef = this.dialog.open(FormsComponent, {
       width: '75%',
-      data: { title: 'Add Bulletin', action: 'save' }
+      data: { title: 'Add Risk', action: 'save' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
