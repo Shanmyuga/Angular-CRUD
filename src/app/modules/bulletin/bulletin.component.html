@@ -17,6 +17,19 @@
         <mat-form-field class="filter-field">
 
 
+          <mat-label>  Messages assigned From Dept </mat-label>
+          <mat-select [(ngModel)]="searchByFromDept"   (selectionChange)="doLoadSprints($event)">
+
+            <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
+              {{dept._label}}</mat-option>
+
+          </mat-select>
+
+
+        </mat-form-field>
+        <mat-form-field class="filter-field">
+
+
           <mat-label>  Messages assigned to Dept </mat-label>
           <mat-select [(ngModel)]="searchByDept"   (selectionChange)="doLoadSprints($event)">
 
@@ -27,7 +40,6 @@
 
 
         </mat-form-field>
-
         <mat-form-field class="filter-field">
 
 

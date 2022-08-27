@@ -102,6 +102,7 @@ export class FormsComponent implements OnInit {
     this.frm = this.fb.group({
       workOrder_desc: new FormControl(IS_EDITING ? data[0]._workOrder_desc : null, [ Validators.required,Validators.minLength(10)]),
       dept_assigned_to: new FormControl(IS_EDITING ? data[0]._dept_assigned_to : null, [ Validators.required,Validators.minLength(2)]),
+      dept_assigned_from: new FormControl(IS_EDITING ? data[0]._dept_assigned_from : null, [ Validators.required,Validators.minLength(2)]),
       target_date: new FormControl(IS_EDITING ? data[0]._target_date : null,[Validators.required, Validators.minLength(2)]),
       message: new FormControl(IS_EDITING ? data.message : null,[Validators.required, Validators.minLength(20)]),
       attachments: new FormControl(IS_EDITING ? data.attachments : null)
@@ -126,7 +127,7 @@ export class FormsComponent implements OnInit {
     formData.append('target_date',form.get('target_date').value);
     formData.append('workOrder_desc',form.get('workOrder_desc').value);
     formData.append('dept_assigned_to',form.get('dept_assigned_to').value);
-
+    formData.append('dept_assigned_from',form.get('dept_assigned_from').value);
     this.bulletinService.saveFormData(formData).subscribe((data: any) => {
       this.openSnack(data);
 

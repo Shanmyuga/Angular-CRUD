@@ -18,6 +18,17 @@
       </mat-autocomplete>
     </mat-form-field>
     <br/>
+
+    <mat-form-field>
+      <mat-label> Dept assigned From</mat-label>
+      <mat-select formControlName="dept_assigned_from"  >
+
+        <mat-option *ngFor="let dept of departments"  value={{dept._label}}>
+          {{dept._value}}</mat-option>
+      </mat-select>
+
+    </mat-form-field>
+    <br/>
     <mat-form-field>
       <mat-label> Dept assigned to</mat-label>
       <mat-select formControlName="dept_assigned_to"  >

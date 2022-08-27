@@ -38,6 +38,7 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
   public isTotalReached = false;
   public totalItems = 0;
   public searchByDept = '';
+  public searchByFromDept = '';
   public searchByAckStatus = ''
   public departments: any[];
   public sprintNames: any[];
@@ -136,6 +137,7 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
             this.pageSize,
             this.page,
             this.searchByDept,
+            this.searchByFromDept,
             this.searchByAckStatus
 
           );
