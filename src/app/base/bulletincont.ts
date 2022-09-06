@@ -32,6 +32,8 @@ export abstract class BulletinCont {
 
   abstract save(): void;
 
+  abstract close(deptMessResponse: deptMessResponse): void;
+
   abstract delete(deptMessResponse: deptMessResponse): void;
 
 }

@@ -19,7 +19,7 @@
 
           <mat-label>  Messages assigned From Dept </mat-label>
           <mat-select [(ngModel)]="searchByFromDept"   (selectionChange)="doLoadSprints($event)">
-
+            <mat-option value="">All</mat-option>
             <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
               {{dept._label}}</mat-option>
 
@@ -32,7 +32,7 @@
 
           <mat-label>  Messages assigned to Dept </mat-label>
           <mat-select [(ngModel)]="searchByDept"   (selectionChange)="doLoadSprints($event)">
-
+            <mat-option value="">All</mat-option>
             <mat-option *ngFor="let dept of departments"  value={{dept._value}}>
               {{dept._label}}</mat-option>
 
@@ -47,8 +47,8 @@
           <mat-select [(ngModel)]="searchByAckStatus"   (selectionChange)="doLoadSprints($event)">
 
 
-            <mat-option value="N">Open</mat-option>
-            <mat-option value="N">Closed</mat-option>
+            <mat-option value="O">Open</mat-option>
+            <mat-option value="C">Closed</mat-option>
             <mat-option value="">All</mat-option>
           </mat-select>
 
@@ -68,6 +68,7 @@
           <button mat-raised-button (click)="saveCustom()" style="margin-bottom: 15px;margin-left: 30px" color="primary">
             <mat-icon>add</mat-icon> Add Custom EPIC/User Story to BackLog
           </button>-->
+        <error-alert *ngIf="errorMsg" [msg]="errorMsg"></error-alert>
       </div>
 
       <mat-table #table [dataSource]="dataSource" class="person-table" matSort matSortActive="id" matSortDisableClear
@@ -142,9 +143,11 @@
               <button mat-menu-item (click)="edit(row)" >
                 <mat-icon aria-label="Edit">create</mat-icon> View Attachment
               </button>
-
+              <button mat-menu-item (click)="close(row)" >
+                <mat-icon aria-label="Edit">create</mat-icon> Close Risk
+              </button>
               <button mat-menu-item (click)="ack(row)" *ngIf="row._ack_by?.length <= 0" >
-                <mat-icon aria-label="Edit">create</mat-icon> Acknowledge Message
+                <mat-icon aria-label="Edit">create</mat-icon> Acknowledge Risks
               </button>
             </mat-menu>
           </mat-cell>

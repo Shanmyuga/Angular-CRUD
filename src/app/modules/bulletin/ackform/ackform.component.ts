@@ -62,14 +62,30 @@ export class AckformComponent implements OnInit {
   }
 
   public save(form: FormGroup) {
-    console.log(form.value);
-    this.bulletinService.edit(form.value).subscribe((data: any) => {
-      this.openSnack(data);
+    if (this.data.event === "edit") {
 
-      if (data.success) {
-        this.dialogRef.close(true);
-      }
-    });
+
+      console.log(form.value);
+      this.bulletinService.edit(form.value).subscribe((data: any) => {
+        this.openSnack(data);
+
+        if (data.success) {
+          this.dialogRef.close(true);
+        }
+      });
+    }
+
+    if (this.data.event === "close") {
+
+
+      console.log(form.value);
+      this.bulletinService.close(form.value).subscribe((data: any) => {
+        this.openSnack(data);
+
+        if (data.success) {
+          this.dialogRef.close(true);
+        }
+      });
+    }
   }
-
 }

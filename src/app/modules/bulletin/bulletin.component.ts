@@ -19,6 +19,9 @@ import {Download} from "~services/download";
 import {CustomepicComponent} from "~modules/epic/customepic/customepic.component";
 import {AckformComponent} from "~modules/bulletin/ackform/ackform.component";
 import {AckCommentsComponent} from "~modules/bulletin/ackcomments/ackcomments.component";
+
+
+import { of } from 'rxjs';
 @Component({
   selector: 'app-bulletin',
   templateUrl: './bulletin.component.html',
@@ -26,13 +29,14 @@ import {AckCommentsComponent} from "~modules/bulletin/ackcomments/ackcomments.co
   providers:[BulletinService]
 })
 export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
-  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to', '_dept_assigned_from', '_dept_created_by','_dept_created_date', '_target_date','_ack_by','_ack_comments',,'_seq_dept_mess_id'];
+  public displayedColumns = [ '_job_desc', '_dept_message', '_dept_assigned_to', '_dept_assigned_from', '_dept_created_by','_dept_created_date', '_target_date','_ack_by','_ack_comments','_seq_dept_mess_id'];
   public pageSizeOptions = [5, 10, 20, 40, 100];
   public pageSize = 20;
   public dataSource = new MatTableDataSource();
   public pageEvent: PageEvent;
   download$: Observable<Download>
   public resultsLength = 0;
+ public  errorMsg: string;
   public page = 1;
   public isLoading = false;
   public isTotalReached = false;
@@ -122,6 +126,8 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
      this.download$ =  this.bulletinService.openFile(deptMessResponse);
   }
 
+
+
   getData(): void {
 
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -177,13 +183,27 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
       if (data.success) {
         const dialogRef = this.dialog.open(AckformComponent, {
           width: '75%',
-          data: { title: 'Update Acknowledgement', action: 'edit', data: data.data }
+          data: { title: 'Update Acknowledgement', action: 'edit', event:'edit',data: data.data }
         });
 
 
       }
     });
   }
+
+  close(deptMessResponse: deptMessResponse): void {
+    this.bulletinService.getOneData(deptMessResponse._seq_dept_mess_id).subscribe((data: any) => {
+      if (data.success) {
+        const dialogRef = this.dialog.open(AckformComponent, {
+          width: '75%',
+          data: { title: 'Close Risk', action: 'edit', event:'close', data: data.data }
+        });
+
+
+      }
+    });
+  }
+
 
   viewMessage(deptMessResponse: deptMessResponse): void {
     this.bulletinService.getOneData(deptMessResponse._seq_dept_mess_id).subscribe((data: any) => {
@@ -211,4 +231,6 @@ export class BulletinComponent implements AfterViewInit, OnInit, BulletinCont {
       }
     });
   }
+
+
 }

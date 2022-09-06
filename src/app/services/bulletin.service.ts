@@ -32,12 +32,12 @@ export class BulletinService  implements BulletinProvider {
     );
   }
 
-  getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string,searchByAckStatus: string, searchByFromDept: string): Observable<Response> {
+  getList(sortActive: string, order: string, pageSize: number, page: number, searchByDept: string,searchByFromDept: string, searchByAckStatus: string): Observable<Response> {
     let params = new HttpParams();
     params = params.append('active', sortActive);
     params = params.append('order', order);
     params = params.append('searchByDept', searchByDept);
-
+    params = params.append('searchByFromDept', searchByFromDept);
     params = params.append('searchByAckStatus', searchByAckStatus);
     params = params.append('pageSize', pageSize.toString());
     params = params.append('page', page.toString());
@@ -92,6 +92,20 @@ export class BulletinService  implements BulletinProvider {
       CONSTANST.routes.bulletin.edit,
       {
         ack_message: deptMessage.ack_message,
+
+        seq_dept_mess_id: deptMessage.seq_dept_mess_id
+
+      },
+      { headers: this.headers }
+    );
+  }
+
+  close(deptMessage: deptmessage): Observable<Response> {
+    console.log("inside the data");
+    return this.http.post<Response>(
+      CONSTANST.routes.bulletin.close,
+      {
+
 
         seq_dept_mess_id: deptMessage.seq_dept_mess_id
 

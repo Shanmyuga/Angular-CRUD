@@ -14,4 +14,5 @@ export abstract class BulletinProvider {
 
   abstract delete(id: string): Observable<Response>;
 
+  abstract close(deptMessage: deptmessage): Observable<Response>;
 }

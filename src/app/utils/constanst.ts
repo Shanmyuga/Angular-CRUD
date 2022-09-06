@@ -49,6 +49,7 @@ export const CONSTANST = {
         list: HOST + '/api/bulletin/all',
         delete: HOST + '/api/bulletin/delete/:id',
         save: HOST + '/api/bulletin/save',
+        close: HOST + '/api/bulletin/close',
         edit: HOST + '/api/bulletin/edit',
         get: HOST + '/api/bulletin/find/:id',
 
@@ -59,6 +60,7 @@ export const CONSTANST = {
         list: HOST + '/api/sprint/all',
         delete: HOST + '/api/sprint/delete/:id',
         save: HOST + '/api/sprint/save',
+        close: HOST + '/api/sprint/close',
         updateSprintToBackLog: HOST + '/api/sprint/updateBkLog',
         closeStory : HOST + '/api/sprint/closeStory',
         saveSprint: HOST + '/api/sprint/saveSprint',
